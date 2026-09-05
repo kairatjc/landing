@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Вход — Automation / JS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --color-bg: #f2f2f3;
+      --color-surface: #ffffff;
+      --color-surface-2: #e9e9ea;
+      --color-text: #1d1f20;
+      --color-muted: #6b6f73;
+      --color-accent: #5980a6;
+      --color-accent-700: #3f6086;
+      --color-danger: #c0392b;
+      --color-ok: #2e7d54;
+      --color-divider: color-mix(in srgb, #1d1f20 14%, transparent);
+      --font-heading: "Inter", system-ui, sans-serif;
+      --font-body: "Inter", system-ui, sans-serif;
+      --radius: 14px;
+      --shadow: 0 10px 40px rgba(29, 31, 32, 0.08), 0 2px 8px rgba(29, 31, 32, 0.05);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font-body);
+      color: var(--color-text);
+      background:
+        radial-gradient(1200px 600px at 15% -10%, rgba(89, 128, 166, 0.16), transparent 60%),
+        radial-gradient(900px 500px at 110% 10%, rgba(89, 128, 166, 0.10), transparent 55%),
+        var(--color-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-divider);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 34px 32px 30px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 19px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 26px;
+    }
+    .brand .mark {
+      width: 34px; height: 34px;
+      border-radius: 9px;
+      display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--color-accent), var(--color-accent-700));
+      color: #fff;
+      font-size: 16px; font-weight: 700;
+      letter-spacing: 0;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15);
+    }
+    .brand .accent { color: var(--color-accent-700); }
+
+    h1 {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      margin: 0 0 4px;
+    }
+    .subtitle {
+      color: var(--color-muted);
+      font-size: 14px;
+      margin: 0 0 24px;
+    }
+
+    .field { margin-bottom: 18px; }
+    .field label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 7px;
+    }
+
+    .control { position: relative; }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 15px;
+      font-family: var(--font-body);
+      color: var(--color-text);
+      background: var(--color-surface-2);
+      border: 1.5px solid transparent;
+      border-radius: 10px;
+      outline: none;
+      transition: border-color .15s ease, background .15s ease, box-shadow .15s ease;
+    }
+    input.has-eye { padding-right: 46px; }
+
+    input:focus {
+      background: #fff;
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 3px rgba(89, 128, 166, 0.18);
+    }
+    input.invalid {
+      border-color: color-mix(in srgb, var(--color-danger) 60%, transparent);
+    }
+    input.valid {
+      border-color: color-mix(in srgb, var(--color-ok) 55%, transparent);
+    }
+
+    .eye-btn {
+      position: absolute;
+      right: 8px; top: 50%;
+      transform: translateY(-50%);
+      width: 34px; height: 34px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      display: grid; place-items: center;
+      color: var(--color-muted);
+      border-radius: 8px;
+    }
+    .eye-btn:hover { color: var(--color-text); background: rgba(29,31,32,0.05); }
+    .eye-btn:focus-visible { outline: 2px solid var(--color-accent); }
+
+    .hint {
+      min-height: 16px;
+      font-size: 12.5px;
+      margin-top: 6px;
+      color: var(--color-muted);
+    }
+    .hint.error { color: var(--color-danger); }
+
+    .form-error {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      background: color-mix(in srgb, var(--color-danger) 10%, #fff);
+      border: 1px solid color-mix(in srgb, var(--color-danger) 35%, transparent);
+      color: var(--color-danger);
+      font-size: 13.5px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      margin-bottom: 18px;
+    }
+    .form-error.show { display: flex; }
+
+    button.submit {
+      width: 100%;
+      padding: 13px 16px;
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #fff;
+      background: linear-gradient(135deg, var(--color-accent), var(--color-accent-700));
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: opacity .15s ease, transform .05s ease;
+    }
+    button.submit:hover:not(:disabled) { opacity: 0.94; }
+    button.submit:active:not(:disabled) { transform: translateY(1px); }
+    button.submit:disabled {
+      cursor: not-allowed;
+      opacity: 0.45;
+      filter: grayscale(0.4);
+    }
+
+    .foot {
+      margin-top: 22px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--color-muted);
+    }
+    .foot code {
+      background: var(--color-surface-2);
+      padding: 1px 6px;
+      border-radius: 5px;
+      font-size: 11.5px;
+    }
+    .demo-note {
+      margin-top: 14px;
+      font-size: 11.5px;
+      line-height: 1.5;
+      color: var(--color-muted);
+      background: var(--color-surface-2);
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+  </style>
+</head>
+<body>
+  <main class="card" role="main">
+    <div class="brand">
+      <span class="mark">A</span>
+      <span>Automation <span class="accent">/ JS</span></span>
+    </div>
+
+    <h1>С возвращением</h1>
+    <p class="subtitle">Войдите, чтобы открыть панель управления.</p>
+
+    <div class="form-error" id="form-error" data-testid="form-error" role="alert" aria-live="assertive">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line>
+      </svg>
+      <span id="form-error-text">Неверное имя пользователя или пароль.</span>
+    </div>
+
+    <form id="login-form" novalidate autocomplete="off">
+      <div class="field">
+        <label for="username">Имя пользователя</label>
+        <div class="control">
+          <input type="text" id="username" name="username" data-testid="username-input"
+                 autocomplete="username" placeholder="например, john_doe" aria-describedby="username-hint">
+        </div>
+        <div class="hint" id="username-hint" data-testid="username-hint">3–16 символов: латиница, цифры, точка и подчёркивание.</div>
+      </div>
+
+      <div class="field">
+        <label for="password">Пароль</label>
+        <div class="control">
+          <input type="password" id="password" name="password" class="has-eye" data-testid="password-input"
+                 autocomplete="current-password" placeholder="••••••••" aria-describedby="password-hint">
+          <button type="button" class="eye-btn" id="toggle-password" data-testid="toggle-password"
+                  aria-label="Показать пароль" aria-pressed="false" tabindex="0">
+            <svg id="eye-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"></path><circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <svg id="eye-closed" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="display:none">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="hint" id="password-hint" data-testid="password-hint">От 3 до 16 символов.</div>
+      </div>
+
+      <button type="submit" class="submit" id="submit-btn" data-testid="submit-button" disabled>Войти</button>
+    </form>
+
+    <div class="demo-note" data-testid="demo-hint">
+      Демо-стенд для практики автотестов. Попробуйте: <code>demo.user</code> / <code>demo1234</code>
+    </div>
+
+    <p class="foot">© <span id="year"></span> Automation / JS — Кайрат Санташбеков</p>
+  </main>
+
+  <script>
+    "use strict";
+
+    // ---- Configuration -----------------------------------------------------
+    var TOKEN_KEY = "demo_access_token";
+    var TOKEN_TTL_MS = 60 * 60 * 1000; // 1 hour
+
+    // Hardcoded "user database". No backend involved — this is a mock.
+    var USERS = [
+      { username: "demo.user", password: "demo1234" },
+      { username: "qa_lead",   password: "Passw0rd" },
+      { username: "a.smith",   password: "secret99" },
+      { username: "john_doe",  password: "test123"  }
+    ];
+
+    // username: latin letters, digits, dot and underscore only, 3–16 chars,
+    // no whitespace anywhere.
+    var USERNAME_RE = /^[A-Za-z0-9._]{3,16}$/;
+
+    // ---- Token helpers -----------------------------------------------------
+    function readToken() {
+      try {
+        var raw = localStorage.getItem(TOKEN_KEY);
+        if (!raw) return null;
+        var data = JSON.parse(raw);
+        if (!data || typeof data.expiresAt !== "number") return null;
+        if (Date.now() >= data.expiresAt) {
+          localStorage.removeItem(TOKEN_KEY);
+          return null;
+        }
+        return data;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function makeToken() {
+      // A random, opaque-looking token. Purely cosmetic — nothing verifies it.
+      var rand = Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);
+      return {
+        token: "mock." + rand,
+        username: null,
+        issuedAt: Date.now(),
+        expiresAt: Date.now() + TOKEN_TTL_MS
+      };
+    }
+
+    // If already authenticated, skip the login screen entirely.
+    if (readToken()) {
+      window.location.replace("admin.html");
+    }
+
+    // ---- Validation --------------------------------------------------------
+    var form = document.getElementById("login-form");
+    var usernameInput = document.getElementById("username");
+    var passwordInput = document.getElementById("password");
+    var usernameHint = document.getElementById("username-hint");
+    var passwordHint = document.getElementById("password-hint");
+    var submitBtn = document.getElementById("submit-btn");
+    var formError = document.getElementById("form-error");
+    var formErrorText = document.getElementById("form-error-text");
+
+    function validateUsername() {
+      var v = usernameInput.value;
+      if (v.length === 0) return { ok: false, msg: "Введите имя пользователя." };
+      if (/\s/.test(v)) return { ok: false, msg: "Пробелы не допускаются." };
+      if (v.length < 3) return { ok: false, msg: "Минимум 3 символа." };
+      if (v.length > 16) return { ok: false, msg: "Максимум 16 символов." };
+      if (!USERNAME_RE.test(v)) return { ok: false, msg: "Только латиница, цифры, точка и подчёркивание." };
+      return { ok: true, msg: "3–16 символов: латиница, цифры, точка и подчёркивание." };
+    }
+
+    function validatePassword() {
+      var v = passwordInput.value;
+      if (v.length === 0) return { ok: false, msg: "Введите пароль." };
+      if (v.length < 3) return { ok: false, msg: "Минимум 3 символа." };
+      if (v.length > 16) return { ok: false, msg: "Максимум 16 символов." };
+      return { ok: true, msg: "От 3 до 16 символов." };
+    }
+
+    function paint(input, hintEl, result, touched) {
+      hintEl.textContent = result.msg;
+      input.classList.toggle("invalid", touched && !result.ok);
+      input.classList.toggle("valid", result.ok && input.value.length > 0);
+      hintEl.classList.toggle("error", touched && !result.ok);
+    }
+
+    var usernameTouched = false;
+    var passwordTouched = false;
+
+    function refresh() {
+      var u = validateUsername();
+      var p = validatePassword();
+      paint(usernameInput, usernameHint, u, usernameTouched);
+      paint(passwordInput, passwordHint, p, passwordTouched);
+      submitBtn.disabled = !(u.ok && p.ok);
+      return u.ok && p.ok;
+    }
+
+    function hideFormError() { formError.classList.remove("show"); }
+
+    usernameInput.addEventListener("input", function () { usernameTouched = true; hideFormError(); refresh(); });
+    passwordInput.addEventListener("input", function () { passwordTouched = true; hideFormError(); refresh(); });
+    usernameInput.addEventListener("blur", function () { usernameTouched = true; refresh(); });
+    passwordInput.addEventListener("blur", function () { passwordTouched = true; refresh(); });
+
+    // ---- Password reveal toggle -------------------------------------------
+    var toggleBtn = document.getElementById("toggle-password");
+    var eyeOpen = document.getElementById("eye-open");
+    var eyeClosed = document.getElementById("eye-closed");
+
+    toggleBtn.addEventListener("click", function () {
+      var revealed = passwordInput.type === "text";
+      passwordInput.type = revealed ? "password" : "text";
+      eyeOpen.style.display = revealed ? "block" : "none";
+      eyeClosed.style.display = revealed ? "none" : "block";
+      toggleBtn.setAttribute("aria-pressed", String(!revealed));
+      toggleBtn.setAttribute("aria-label", revealed ? "Показать пароль" : "Скрыть пароль");
+      passwordInput.focus();
+    });
+
+    // ---- Submit ------------------------------------------------------------
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      usernameTouched = true;
+      passwordTouched = true;
+      if (!refresh()) return;
+
+      var username = usernameInput.value;
+      var password = passwordInput.value;
+
+      var match = USERS.some(function (u) {
+        return u.username === username && u.password === password;
+      });
+
+      if (!match) {
+        formErrorText.textContent = "Неверное имя пользователя или пароль.";
+        formError.classList.add("show");
+        passwordInput.classList.add("invalid");
+        return;
+      }
+
+      var token = makeToken();
+      token.username = username;
+      try {
+        localStorage.setItem(TOKEN_KEY, JSON.stringify(token));
+      } catch (err) { /* storage disabled — nothing we can do in a mock */ }
+
+      window.location.replace("admin.html");
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+    refresh();
+  </script>
+</body>
+</html>
