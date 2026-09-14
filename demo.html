@@ -1,0 +1,1977 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./demo-support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:#F5F7FA;color:#2B3A50;font-family:-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:24px}
+  a{color:#21385C;text-decoration:none}
+  a:hover{color:#16283F}
+  button,input,select,textarea{font-family:inherit;font-size:16px;color:#2B3A50}
+  :focus-visible{outline:2px solid #E9A23B;outline-offset:2px}
+  table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+  @keyframes kcuPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.3)}}
+  @keyframes kcuSpin{to{transform:rotate(360deg)}}
+  @keyframes kcuIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+</style>
+</helmet>
+
+<!-- ================= ШАПКА САЙТА ================= -->
+<sc-if value="{{ showHeader }}" hint-placeholder-val="{{ true }}">
+<header style="background:#fff;border-bottom:1px solid #DCE2EB;position:sticky;top:0;z-index:40">
+  <div style="max-width:1200px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+    <a href="#/" style="display:flex;align-items:center;gap:12px;flex:0 0 auto">
+      <span style="width:40px;height:40px;border-radius:8px;background:#E9A23B;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;overflow:hidden;flex:0 0 auto">
+        <span style="background:#fff"></span><span></span><span></span><span style="background:#fff"></span>
+      </span>
+      <span style="font-size:13px;line-height:16px;font-weight:700;color:#21385C;letter-spacing:.04em">KYRGYZ<br />CHESS UNION</span>
+    </a>
+    <nav style="display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin-left:auto">
+      <a href="#/competitions" style="display:inline-flex;align-items:center;height:44px;padding:0 14px;border-radius:8px;font-weight:500;color:#21385C" style-hover="background:#E7EBF2">Соревнования</a>
+      <a href="#/news" style="display:inline-flex;align-items:center;height:44px;padding:0 14px;border-radius:8px;font-weight:500;color:#21385C" style-hover="background:#E7EBF2">Новости</a>
+      <button onClick="{{ stub }}" style="height:44px;padding:0 14px;border:0;background:transparent;border-radius:8px;font-weight:500;color:#21385C;cursor:pointer" style-hover="background:#E7EBF2">О федерации</button>
+      <button onClick="{{ stub }}" style="height:44px;padding:0 14px;border:0;background:transparent;border-radius:8px;font-weight:500;color:#21385C;cursor:pointer" style-hover="background:#E7EBF2">Контакты</button>
+      <span style="display:inline-flex;align-items:center;border:1px solid #DCE2EB;border-radius:8px;overflow:hidden;margin-left:8px;height:36px">
+        <span style="padding:0 10px;height:36px;display:inline-flex;align-items:center;font-size:13px;font-weight:600;background:#21385C;color:#fff">RU</span>
+        <button onClick="{{ stub }}" style="padding:0 10px;height:36px;border:0;background:#fff;font-size:13px;font-weight:500;color:#5C6A80;cursor:pointer">KG</button>
+        <button onClick="{{ stub }}" style="padding:0 10px;height:36px;border:0;background:#fff;font-size:13px;font-weight:500;color:#5C6A80;cursor:pointer">EN</button>
+      </span>
+      <a href="#/admin" style="display:inline-flex;align-items:center;height:36px;padding:0 12px;margin-left:4px;border:1px solid #DCE2EB;border-radius:8px;font-size:14px;font-weight:500;color:#5C6A80" style-hover="border-color:#21385C;color:#21385C">Админка</a>
+    </nav>
+  </div>
+</header>
+</sc-if>
+
+<!-- ================= 8.1 ГЛАВНАЯ ================= -->
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<main style="max-width:1200px;margin:0 auto;padding:24px">
+  <section style="position:relative;border-radius:12px;overflow:hidden;border:1px solid #DCE2EB;background:#fff">
+    <div style="position:absolute;inset:0;opacity:.4;background-image:linear-gradient(45deg,#E7EBF2 25%,transparent 25%,transparent 75%,#E7EBF2 75%),linear-gradient(45deg,#E7EBF2 25%,transparent 25%,transparent 75%,#E7EBF2 75%);background-size:48px 48px;background-position:0 0,24px 24px"></div>
+    <div style="position:relative;display:flex;flex-wrap:wrap;gap:32px;padding:48px;align-items:center">
+      <div style="flex:1 1 420px;min-width:0">
+        <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;font-size:13px;line-height:16px;font-weight:500;color:#21385C;background:#FDF1DE">
+          <span style="width:6px;height:6px;border-radius:999px;background:#E9A23B;animation:kcuPulse 1.6s infinite"></span>Регистрация открыта
+        </span>
+        <h1 style="margin:16px 0 8px;font-size:40px;line-height:48px;font-weight:700;color:#21385C;text-wrap:pretty">{{ hero.title }}</h1>
+        <p style="margin:0 0 24px;color:#5C6A80;font-size:16px">{{ hero.line }}</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="{{ hero.regHref }}" style="display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 20px;border-radius:8px;background:#21385C;color:#fff;font-weight:600;transition:background 150ms" style-hover="background:#16283F">Зарегистрироваться</a>
+          <button onClick="{{ stub }}" style="display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 20px;border-radius:8px;background:#fff;color:#21385C;border:1px solid #DCE2EB;font-weight:600;cursor:pointer;transition:border-color 150ms" style-hover="border-color:#21385C">Регламент</button>
+        </div>
+      </div>
+      <div style="flex:1 1 360px;min-width:0;height:280px;border-radius:12px;border:1px solid #DCE2EB;display:grid;place-items:center;background-image:repeating-linear-gradient(45deg,#EEF1F6 0 8px,#F7F9FC 8px 16px)">
+        <span style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:#5C6A80">фото соревнования</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="margin-top:48px">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:16px">
+      <h2 style="margin:0;font-size:32px;line-height:40px;font-weight:700;color:#21385C">Ближайшие соревнования</h2>
+      <a href="#/competitions" style="font-weight:600;color:#21385C">Все соревнования →</a>
+    </div>
+    <div style="display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+      <sc-for list="{{ homeComps }}" as="c" hint-placeholder-count="3">
+        <a href="{{ c.href }}" style="display:block;background:#fff;border:1px solid #DCE2EB;border-radius:12px;overflow:hidden;box-shadow:0 1px 2px rgba(33,56,92,.06),0 8px 24px rgba(33,56,92,.06);transition:transform 150ms,border-color 150ms" style-hover="transform:translateY(-2px);border-color:#21385C">
+          <span style="position:relative;display:block;aspect-ratio:16/9;background-image:repeating-linear-gradient(45deg,#EEF1F6 0 8px,#F7F9FC 8px 16px)">
+            <span style="position:absolute;inset:0;display:grid;place-items:center;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:#5C6A80">фото соревнования</span>
+            <span style="position:absolute;top:12px;left:12px" style="{{ c.pillWrap }}">
+              <span style="{{ c.pillStyle }}"><sc-if value="{{ c.live }}"><span style="width:6px;height:6px;border-radius:999px;background:#E9A23B;animation:kcuPulse 1.6s infinite"></span></sc-if>{{ c.statusText }}</span>
+            </span>
+          </span>
+          <span style="display:block;padding:16px">
+            <span style="display:block;font-size:20px;line-height:28px;font-weight:600;color:#21385C;text-wrap:pretty">{{ c.title }}</span>
+            <span style="display:block;margin-top:8px;font-size:14px;line-height:20px;color:#5C6A80">{{ c.dates }} · {{ c.city }}</span>
+          </span>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="margin-top:48px">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:16px">
+      <h2 style="margin:0;font-size:32px;line-height:40px;font-weight:700;color:#21385C">Мы в Instagram</h2>
+      <button onClick="{{ stub }}" style="border:0;background:transparent;font-weight:600;color:#21385C;cursor:pointer;font-size:16px">@chess.kg →</button>
+    </div>
+    <div style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
+      <sc-for list="{{ posts }}" as="p" hint-placeholder-count="4">
+        <div style="aspect-ratio:1/1;border-radius:12px;border:1px solid #DCE2EB;display:grid;place-items:center;background-image:repeating-linear-gradient(45deg,#EEF1F6 0 8px,#F7F9FC 8px 16px)">
+          <span style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:#5C6A80">{{ p.label }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="margin-top:48px">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:16px">
+      <h2 style="margin:0;font-size:32px;line-height:40px;font-weight:700;color:#21385C">Новости</h2>
+      <a href="#/news" style="font-weight:600;color:#21385C">Все новости →</a>
+    </div>
+    <div style="display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+      <sc-for list="{{ homeNews }}" as="n" hint-placeholder-count="3">
+        <a href="{{ n.href }}" style="display:block;background:#fff;border:1px solid #DCE2EB;border-radius:12px;overflow:hidden;transition:border-color 150ms" style-hover="border-color:#21385C">
+          <span style="display:block;aspect-ratio:16/9;background-image:repeating-linear-gradient(45deg,#EEF1F6 0 8px,#F7F9FC 8px 16px)"></span>
+          <span style="display:block;padding:16px">
+            <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">{{ n.date }}</span>
+            <span style="display:block;margin-top:8px;font-size:20px;line-height:28px;font-weight:600;color:#21385C;text-wrap:pretty">{{ n.title }}</span>
+            <span style="display:block;margin-top:12px;font-weight:600;color:#C9862A">Читать →</span>
+          </span>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+</main>
+</sc-if>
+
+<!-- ================= 8.2 СПИСОК СОРЕВНОВАНИЙ ================= -->
+<sc-if value="{{ isCompList }}" hint-placeholder-val="{{ false }}">
+<main style="max-width:1200px;margin:0 auto;padding:24px">
+  <h1 style="margin:0 0 24px;font-size:40px;line-height:48px;font-weight:700;color:#21385C">Соревнования</h1>
+  <div style="background:#F5F7FA;border:1px solid #DCE2EB;border-radius:12px;padding:16px;display:flex;gap:16px;flex-wrap:wrap;align-items:flex-end">
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <sc-for list="{{ compChips }}" as="ch" hint-placeholder-count="4">
+        <button onClick="{{ ch.pick }}" style="{{ ch.style }}">{{ ch.label }}</button>
+      </sc-for>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-left:auto;align-items:flex-end">
+      <label style="display:block">
+        <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80;margin-bottom:4px">Период</span>
+        <span style="display:flex;gap:8px;align-items:center">
+          <input type="date" value="{{ periodFrom }}" onInput="{{ setPeriodFrom }}" style="height:44px;padding:0 10px;border:1px solid #DCE2EB;border-radius:8px;background:#fff" />
+          <input type="date" value="{{ periodTo }}" onInput="{{ setPeriodTo }}" style="height:44px;padding:0 10px;border:1px solid #DCE2EB;border-radius:8px;background:#fff" />
+        </span>
+      </label>
+      <label style="display:block">
+        <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80;margin-bottom:4px">Сортировка</span>
+        <select value="{{ compSort }}" onChange="{{ setSort }}" style="height:44px;padding:0 10px;border:1px solid #DCE2EB;border-radius:8px;background:#fff">
+          <option value="new">Сначала новые</option>
+          <option value="old">Сначала старые</option>
+        </select>
+      </label>
+      <span style="display:inline-flex;border:1px solid #DCE2EB;border-radius:8px;overflow:hidden;height:44px">
+        <button onClick="{{ viewList }}" style="{{ viewListStyle }}">Список</button>
+        <button onClick="{{ viewCal }}" style="{{ viewCalStyle }}">Календарь</button>
+      </span>
+    </div>
+  </div>
+
+  <sc-if value="{{ isListView }}" hint-placeholder-val="{{ true }}">
+    <sc-if value="{{ hasComps }}" hint-placeholder-val="{{ true }}">
+      <div style="margin-top:24px;display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+        <sc-for list="{{ listComps }}" as="c" hint-placeholder-count="6">
+          <a href="{{ c.href }}" style="display:block;background:#fff;border:1px solid #DCE2EB;border-radius:12px;overflow:hidden;box-shadow:0 1px 2px rgba(33,56,92,.06),0 8px 24px rgba(33,56,92,.06);transition:transform 150ms,border-color 150ms" style-hover="transform:translateY(-2px);border-color:#21385C">
+            <span style="position:relative;display:block;aspect-ratio:16/9;background-image:repeating-linear-gradient(45deg,#EEF1F6 0 8px,#F7F9FC 8px 16px)">
+              <span style="position:absolute;inset:0;display:grid;place-items:center;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:#5C6A80">фото соревнования</span>
+              <span style="position:absolute;top:12px;left:12px"><span style="{{ c.pillStyle }}"><sc-if value="{{ c.live }}"><span style="width:6px;height:6px;border-radius:999px;background:#E9A23B;animation:kcuPulse 1.6s infinite"></span></sc-if>{{ c.statusText }}</span></span>
+            </span>
+            <span style="display:block;padding:16px">
+              <span style="display:block;font-size:20px;line-height:28px;font-weight:600;color:#21385C;text-wrap:pretty">{{ c.title }}</span>
+              <span style="display:block;margin-top:8px;font-size:14px;line-height:20px;color:#5C6A80">{{ c.dates }} · {{ c.city }}</span>
+            </span>
+          </a>
+        </sc-for>
+      </div>
+    </sc-if>
+    <sc-if value="{{ noComps }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top:24px;background:#fff;border:1px solid #DCE2EB;border-radius:12px;padding:64px 24px;text-align:center">
+        <div style="width:56px;height:56px;margin:0 auto 16px;border-radius:12px;background:#FDF1DE;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;overflow:hidden">
+          <span style="background:#E9A23B"></span><span></span><span></span><span style="background:#E9A23B"></span>
+        </div>
+        <h3 style="margin:0 0 8px;font-size:24px;line-height:32px;font-weight:600;color:#21385C">Соревнований не найдено</h3>
+        <p style="margin:0 0 24px;color:#5C6A80">Попробуйте изменить фильтры или период.</p>
+        <button onClick="{{ resetFilters }}" style="height:44px;padding:0 20px;border-radius:8px;background:#E9A23B;color:#21385C;border:0;font-weight:600;cursor:pointer;transition:background 150ms" style-hover="background:#C9862A">Сбросить фильтры</button>
+      </div>
+    </sc-if>
+  </sc-if>
+
+  <sc-if value="{{ isCalView }}" hint-placeholder-val="{{ false }}">
+    <div style="margin-top:24px;background:#fff;border:1px solid #DCE2EB;border-radius:12px;padding:24px">
+      <h3 style="margin:0 0 16px;font-size:24px;line-height:32px;font-weight:600;color:#21385C">Апрель 2026</h3>
+      <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px">
+        <sc-for list="{{ weekDays }}" as="w" hint-placeholder-count="7">
+          <div style="font-size:13px;line-height:16px;font-weight:500;color:#5C6A80;text-align:center;padding-bottom:4px">{{ w.label }}</div>
+        </sc-for>
+        <sc-for list="{{ calCells }}" as="d" hint-placeholder-count="35">
+          <div style="{{ d.style }}" title="{{ d.title }}">
+            <span style="font-size:14px;font-variant-numeric:tabular-nums">{{ d.day }}</span>
+            <sc-if value="{{ d.has }}"><span style="display:block;width:6px;height:6px;margin-top:4px;border-radius:999px;background:#E9A23B"></span></sc-if>
+          </div>
+        </sc-for>
+      </div>
+      <p style="margin:16px 0 0;font-size:14px;line-height:20px;color:#5C6A80">Амбровая точка — день соревнования. 4–6 апреля: Кубок Иссык-Куля · 22–28 апреля: Первенство КР до 18 лет.</p>
+    </div>
+  </sc-if>
+</main>
+</sc-if>
+
+<!-- ================= 8.3 / 8.4 СТРАНИЦА СОРЕВНОВАНИЯ ================= -->
+<sc-if value="{{ isComp }}" hint-placeholder-val="{{ false }}">
+<main style="max-width:1200px;margin:0 auto;padding:24px">
+  <nav style="font-size:14px;line-height:20px;color:#5C6A80;margin-bottom:16px"><a href="#/" style="color:#5C6A80">Главная</a> · <a href="#/competitions" style="color:#5C6A80">Соревнования</a></nav>
+  <div style="position:relative;border-radius:12px;overflow:hidden;border:1px solid #DCE2EB;height:240px;background-image:repeating-linear-gradient(45deg,#EEF1F6 0 8px,#F7F9FC 8px 16px);display:grid;place-items:center">
+    <span style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:#5C6A80">обложка соревнования</span>
+    <span style="position:absolute;top:16px;left:16px"><span style="{{ comp.pillStyle }}"><sc-if value="{{ comp.live }}"><span style="width:6px;height:6px;border-radius:999px;background:#E9A23B;animation:kcuPulse 1.6s infinite"></span></sc-if>{{ comp.statusText }}</span></span>
+  </div>
+  <h1 style="margin:24px 0 8px;font-size:40px;line-height:48px;font-weight:700;color:#21385C;text-wrap:pretty">{{ comp.title }}</h1>
+  <p style="margin:0 0 24px;color:#5C6A80">{{ comp.line }}</p>
+
+  <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start">
+    <!-- вкладки -->
+    <div style="flex:1 1 560px;min-width:0">
+      <div style="display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid #DCE2EB">
+        <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
+          <button onClick="{{ t.pick }}" style="{{ t.style }}">{{ t.label }}</button>
+        </sc-for>
+      </div>
+      <div style="padding-top:24px">
+        <sc-if value="{{ tabDesc }}" hint-placeholder-val="{{ true }}">
+          <p style="margin:0 0 16px;text-wrap:pretty">{{ comp.p1 }}</p>
+          <p style="margin:0 0 24px;text-wrap:pretty">{{ comp.p2 }}</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <sc-for list="{{ catChips }}" as="c" hint-placeholder-count="4">
+              <span style="padding:6px 14px;border-radius:999px;background:#E7EBF2;color:#21385C;font-size:14px;font-weight:500">{{ c.label }}</span>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ tabRules }}" hint-placeholder-val="{{ false }}">
+          <p style="margin:0 0 16px">Система — круговая при числе участников до 10 человек, швейцарская при большем числе. Контроль времени: 90 минут на 40 ходов плюс 30 минут до конца партии, с добавлением 30 секунд за ход.</p>
+          <p style="margin:0 0 16px">Дополнительные показатели при равенстве очков: личная встреча, усечённый Бухгольц, Бухгольц, число побед. Турнир обсчитывается по рейтингу ФИДЕ.</p>
+          <button onClick="{{ stub }}" style="height:44px;padding:0 20px;border-radius:8px;background:#fff;color:#21385C;border:1px solid #DCE2EB;font-weight:600;cursor:pointer" style-hover="border-color:#21385C">Скачать регламент (PDF)</button>
+        </sc-if>
+        <sc-if value="{{ tabPrize }}" hint-placeholder-val="{{ false }}">
+          <table>
+            <thead><tr><th style="text-align:left;padding:12px 16px;background:#F5F7FA;border:1px solid #DCE2EB;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Место</th><th style="text-align:right;padding:12px 16px;background:#F5F7FA;border:1px solid #DCE2EB;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Приз</th></tr></thead>
+            <tbody>
+              <sc-for list="{{ prizes }}" as="p" hint-placeholder-count="3">
+                <tr><td style="padding:12px 16px;border:1px solid #DCE2EB;height:48px">{{ p.place }}</td><td style="padding:12px 16px;border:1px solid #DCE2EB;text-align:right;font-weight:600;color:#21385C">{{ p.sum }}</td></tr>
+              </sc-for>
+            </tbody>
+          </table>
+          <p style="margin:16px 0 0;font-size:14px;line-height:20px;color:#5C6A80">Призовой фонд распределяется отдельно по каждой категории.</p>
+        </sc-if>
+        <sc-if value="{{ tabStay }}" hint-placeholder-val="{{ false }}">
+          <p style="margin:0 0 16px">Проживание в гостинице «Алай» в трёх минутах ходьбы от места игры. Бронирование через заявку на участие.</p>
+          <ul style="margin:0 0 16px;padding-left:20px;color:#2B3A50">
+            <li style="margin-bottom:8px">2-местный номер — 1 800 сом в сутки с человека, завтрак включён</li>
+            <li style="margin-bottom:8px">1-местный номер — 2 900 сом в сутки</li>
+            <li>Трансфер из аэропорта и обратно — 800 сом с человека</li>
+          </ul>
+          <p style="margin:0;font-size:14px;line-height:20px;color:#5C6A80">Заезд с 21 апреля, выезд до 12:00 28 апреля.</p>
+        </sc-if>
+        <sc-if value="{{ tabPlayers }}" hint-placeholder-val="{{ false }}">
+          <div style="overflow-x:auto;border:1px solid #DCE2EB;border-radius:8px">
+            <table>
+              <thead><tr>
+                <th style="text-align:left;padding:12px 16px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">№</th>
+                <th style="text-align:left;padding:12px 16px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80"></th>
+                <th style="text-align:left;padding:12px 16px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">ФИО</th>
+                <th style="text-align:left;padding:12px 16px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Год</th>
+                <th style="text-align:right;padding:12px 16px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Рейтинг FIDE</th>
+                <th style="text-align:left;padding:12px 16px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Категория</th>
+              </tr></thead>
+              <tbody>
+                <sc-for list="{{ compPlayers }}" as="p" hint-placeholder-count="6">
+                  <tr>
+                    <td style="padding:12px 16px;border-top:1px solid #DCE2EB;height:48px;color:#5C6A80">{{ p.num }}</td>
+                    <td style="padding:12px 16px;border-top:1px solid #DCE2EB;font-size:18px">{{ p.flag }}</td>
+                    <td style="padding:12px 16px;border-top:1px solid #DCE2EB;font-weight:600;color:#21385C">{{ p.name }}</td>
+                    <td style="padding:12px 16px;border-top:1px solid #DCE2EB">{{ p.year }}</td>
+                    <td style="padding:12px 16px;border-top:1px solid #DCE2EB;text-align:right">{{ p.rating }}</td>
+                    <td style="padding:12px 16px;border-top:1px solid #DCE2EB;color:#5C6A80">{{ p.cat }}</td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+          </div>
+        </sc-if>
+        <sc-if value="{{ tabResults }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px">
+            <sc-for list="{{ roundChips }}" as="r" hint-placeholder-count="5">
+              <button onClick="{{ r.pick }}" style="{{ r.style }}">{{ r.label }}</button>
+            </sc-for>
+          </div>
+          <sc-if value="{{ hasGames }}" hint-placeholder-val="{{ true }}">
+            <div style="overflow-x:auto;border:1px solid #DCE2EB;border-radius:8px">
+              <table>
+                <thead><tr>
+                  <th style="text-align:left;padding:12px 16px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Доска</th>
+                  <th style="text-align:left;padding:12px 16px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Белые</th>
+                  <th style="text-align:center;padding:12px 16px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Результат</th>
+                  <th style="text-align:left;padding:12px 16px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Чёрные</th>
+                </tr></thead>
+                <tbody>
+                  <sc-for list="{{ games }}" as="g" hint-placeholder-count="5">
+                    <tr>
+                      <td style="padding:12px 16px;border-top:1px solid #DCE2EB;color:#5C6A80;width:80px">{{ g.board }}</td>
+                      <td style="padding:12px 16px;border-top:1px solid #DCE2EB">
+                        <span style="{{ g.wStyle }}">{{ g.wFlag }} {{ g.wName }}</span>
+                        <span style="display:block;font-size:13px;line-height:16px;color:#5C6A80">{{ g.wTitle }}</span>
+                      </td>
+                      <td style="padding:12px 16px;border-top:1px solid #DCE2EB;text-align:center;white-space:nowrap"><span style="{{ g.resStyle }}">{{ g.res }}</span></td>
+                      <td style="padding:12px 16px;border-top:1px solid #DCE2EB">
+                        <span style="{{ g.bStyle }}">{{ g.bFlag }} {{ g.bName }}</span>
+                        <span style="display:block;font-size:13px;line-height:16px;color:#5C6A80">{{ g.bTitle }}</span>
+                      </td>
+                    </tr>
+                  </sc-for>
+                </tbody>
+              </table>
+            </div>
+          </sc-if>
+          <sc-if value="{{ roundInPlay }}" hint-placeholder-val="{{ false }}">
+            <div style="background:#fff;border:1px solid #DCE2EB;border-radius:12px;padding:48px 24px;text-align:center">
+              <div style="width:48px;height:48px;margin:0 auto 16px;border-radius:8px;background:#FDF1DE;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;overflow:hidden"><span style="background:#E9A23B"></span><span></span><span></span><span style="background:#E9A23B"></span></div>
+              <p style="margin:0;color:#5C6A80">Результаты появятся после окончания тура</p>
+            </div>
+          </sc-if>
+        </sc-if>
+        <sc-if value="{{ tabStandings }}" hint-placeholder-val="{{ false }}">
+          <div style="overflow-x:auto;border:1px solid #DCE2EB;border-radius:8px">
+            <table>
+              <thead><tr>
+                <th style="text-align:left;padding:12px 16px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Место</th>
+                <th style="text-align:left;padding:12px 16px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">ФИО</th>
+                <th style="text-align:right;padding:12px 16px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Очки</th>
+                <th style="text-align:right;padding:12px 16px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Бухгольц</th>
+              </tr></thead>
+              <tbody>
+                <sc-for list="{{ standings }}" as="r" hint-placeholder-count="6">
+                  <tr>
+                    <td style="padding:12px 16px;border-top:1px solid #DCE2EB;height:48px;color:#5C6A80">{{ r.place }}</td>
+                    <td style="padding:12px 16px;border-top:1px solid #DCE2EB;font-weight:600;color:#21385C">{{ r.flag }} {{ r.name }}</td>
+                    <td style="padding:12px 16px;border-top:1px solid #DCE2EB;text-align:right;font-weight:600">{{ r.pts }}</td>
+                    <td style="padding:12px 16px;border-top:1px solid #DCE2EB;text-align:right;color:#5C6A80">{{ r.bh }}</td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+          </div>
+        </sc-if>
+      </div>
+
+      <div style="margin-top:48px;padding-top:24px;border-top:1px solid #DCE2EB">
+        <h3 style="margin:0 0 12px;font-size:24px;line-height:32px;font-weight:600;color:#21385C">Контакты организатора</h3>
+        <p style="margin:0;color:#5C6A80;font-size:14px;line-height:20px">Главный судья: Садыков Азамат · +996 555 10-20-30 · org@chess.kg<br />Kyrgyz Chess Union, Бишкек, ул. Токтогула 125</p>
+      </div>
+    </div>
+
+    <!-- липкая карточка -->
+    <aside style="flex:0 1 320px;min-width:280px;position:sticky;top:96px">
+      <sc-if value="{{ regOpen }}" hint-placeholder-val="{{ true }}">
+        <div style="background:#fff;border:1px solid #DCE2EB;border-radius:12px;padding:24px;box-shadow:0 1px 2px rgba(33,56,92,.06),0 8px 24px rgba(33,56,92,.06)">
+          <p style="margin:0 0 4px;font-size:14px;line-height:20px;color:#5C6A80">Регистрация открыта до {{ comp.regUntil }}</p>
+          <p style="margin:0 0 16px;font-size:24px;line-height:32px;font-weight:600;color:#21385C">Взнос: {{ comp.feeText }}</p>
+          <p style="margin:0 0 8px;font-size:14px;line-height:20px;color:#5C6A80">Заявлено: {{ comp.apps }} из {{ comp.limit }}</p>
+          <div style="height:8px;border-radius:999px;background:#E7EBF2;overflow:hidden;margin-bottom:24px"><div style="{{ comp.barStyle }}"></div></div>
+          <a href="{{ comp.regHref }}" style="display:flex;align-items:center;justify-content:center;height:44px;border-radius:8px;background:#21385C;color:#fff;font-weight:600;transition:background 150ms" style-hover="background:#16283F">Зарегистрироваться</a>
+          <p style="margin:12px 0 0;font-size:13px;line-height:16px;color:#5C6A80">Проживание и трансфер оплачиваются отдельно</p>
+        </div>
+      </sc-if>
+      <sc-if value="{{ regClosed }}" hint-placeholder-val="{{ false }}">
+        <div style="background:#fff;border:1px solid #DCE2EB;border-radius:12px;padding:24px;box-shadow:0 1px 2px rgba(33,56,92,.06),0 8px 24px rgba(33,56,92,.06)">
+          <h3 style="margin:0 0 8px;font-size:24px;line-height:32px;font-weight:600;color:#21385C">Соревнование завершено</h3>
+          <p style="margin:0 0 24px;font-size:14px;line-height:20px;color:#5C6A80">{{ comp.apps }} участников · {{ comp.dates }}</p>
+          <button onClick="{{ goStandings }}" style="width:100%;height:44px;border-radius:8px;background:#21385C;color:#fff;border:0;font-weight:600;cursor:pointer;margin-bottom:12px;transition:background 150ms" style-hover="background:#16283F">Итоговая таблица</button>
+          <button onClick="{{ stub }}" style="width:100%;height:44px;border-radius:8px;background:#fff;color:#21385C;border:1px solid #DCE2EB;font-weight:600;cursor:pointer" style-hover="border-color:#21385C">Страница на chess-results.com</button>
+        </div>
+      </sc-if>
+    </aside>
+  </div>
+</main>
+</sc-if>
+
+<!-- ================= 8.9 НОВОСТИ ================= -->
+<sc-if value="{{ isNewsList }}" hint-placeholder-val="{{ false }}">
+<main style="max-width:1200px;margin:0 auto;padding:24px">
+  <h1 style="margin:0 0 24px;font-size:40px;line-height:48px;font-weight:700;color:#21385C">Новости</h1>
+  <div style="display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+    <sc-for list="{{ newsList }}" as="n" hint-placeholder-count="6">
+      <a href="{{ n.href }}" style="display:block;background:#fff;border:1px solid #DCE2EB;border-radius:12px;overflow:hidden;transition:border-color 150ms" style-hover="border-color:#21385C">
+        <span style="display:block;aspect-ratio:16/9;background-image:repeating-linear-gradient(45deg,#EEF1F6 0 8px,#F7F9FC 8px 16px)"></span>
+        <span style="display:block;padding:16px">
+          <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">{{ n.date }}</span>
+          <span style="display:block;margin-top:8px;font-size:20px;line-height:28px;font-weight:600;color:#21385C;text-wrap:pretty">{{ n.title }}</span>
+          <span style="display:block;margin-top:8px;font-size:14px;line-height:20px;color:#5C6A80">{{ n.lead }}</span>
+          <span style="display:block;margin-top:12px;font-weight:600;color:#C9862A">Читать →</span>
+        </span>
+      </a>
+    </sc-for>
+  </div>
+  <div style="display:flex;gap:8px;justify-content:center;margin-top:32px">
+    <span style="display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:44px;border-radius:8px;background:#21385C;color:#fff;font-weight:600">1</span>
+    <button onClick="{{ stub }}" style="min-width:44px;height:44px;border-radius:8px;background:#fff;border:1px solid #DCE2EB;color:#21385C;font-weight:600;cursor:pointer">2</button>
+    <button onClick="{{ stub }}" style="min-width:44px;height:44px;padding:0 16px;border-radius:8px;background:#fff;border:1px solid #DCE2EB;color:#21385C;font-weight:600;cursor:pointer">Далее →</button>
+  </div>
+</main>
+</sc-if>
+
+<sc-if value="{{ isNews }}" hint-placeholder-val="{{ false }}">
+<main style="max-width:800px;margin:0 auto;padding:24px">
+  <nav style="font-size:14px;line-height:20px;color:#5C6A80;margin-bottom:16px"><a href="#/news" style="color:#5C6A80">← Все новости</a></nav>
+  <p style="margin:0;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">{{ article.date }}</p>
+  <h1 style="margin:8px 0 24px;font-size:40px;line-height:48px;font-weight:700;color:#21385C;text-wrap:pretty">{{ article.title }}</h1>
+  <div style="height:320px;border-radius:12px;border:1px solid #DCE2EB;display:grid;place-items:center;background-image:repeating-linear-gradient(45deg,#EEF1F6 0 8px,#F7F9FC 8px 16px);margin-bottom:24px">
+    <span style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:#5C6A80">обложка новости</span>
+  </div>
+  <p style="margin:0 0 16px;text-wrap:pretty">{{ article.lead }}</p>
+  <p style="margin:0 0 16px;text-wrap:pretty">Заявки принимаются через сайт федерации. К заявке нужно приложить копию свидетельства о рождении или паспорта, а для участников сборной — подтверждение от тренерского совета.</p>
+  <p style="margin:0 0 16px;text-wrap:pretty">Организаторы напоминают, что число мест ограничено и заявки рассматриваются в порядке поступления. Оплата взноса подтверждает участие.</p>
+  <p style="margin:0 0 48px;text-wrap:pretty">Подробный регламент, расписание туров и список категорий опубликованы на странице соревнования. Вопросы — по телефону +996 555 10-20-30.</p>
+  <h3 style="margin:0 0 16px;font-size:24px;line-height:32px;font-weight:600;color:#21385C">Другие новости</h3>
+  <div style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+    <sc-for list="{{ related }}" as="n" hint-placeholder-count="3">
+      <a href="{{ n.href }}" style="display:block;background:#fff;border:1px solid #DCE2EB;border-radius:12px;padding:16px;transition:border-color 150ms" style-hover="border-color:#21385C">
+        <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">{{ n.date }}</span>
+        <span style="display:block;margin-top:8px;font-weight:600;color:#21385C;text-wrap:pretty">{{ n.title }}</span>
+      </a>
+    </sc-for>
+  </div>
+</main>
+</sc-if>
+<!-- ================= 8.5–8.7 РЕГИСТРАЦИЯ (шаги 1–3) ================= -->
+<sc-if value="{{ isReg }}" hint-placeholder-val="{{ false }}">
+<main style="max-width:1200px;margin:0 auto;padding:24px">
+  <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:24px">
+    <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3">
+      <button onClick="{{ s.go }}" style="{{ s.style }}"><span style="{{ s.numStyle }}">{{ s.num }}</span>{{ s.label }}</button>
+    </sc-for>
+  </div>
+  <h1 style="margin:0 0 24px;font-size:32px;line-height:40px;font-weight:700;color:#21385C;text-wrap:pretty">Регистрация · {{ regComp.title }}</h1>
+
+  <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start">
+    <div style="flex:1 1 560px;min-width:0">
+
+      <!-- ---------- ШАГ 1: участники ---------- -->
+      <sc-if value="{{ isReg1 }}" hint-placeholder-val="{{ true }}">
+        <div style="display:inline-flex;border:1px solid #DCE2EB;border-radius:8px;overflow:hidden;margin-bottom:24px">
+          <button onClick="{{ modeSingle }}" style="{{ modeSingleStyle }}">За одного участника</button>
+          <button onClick="{{ modeDeleg }}" style="{{ modeDelegStyle }}">За делегацию</button>
+        </div>
+
+        <div style="background:#fff;border:1px solid #DCE2EB;border-radius:12px;padding:24px;margin-bottom:24px">
+          <h3 style="margin:0 0 4px;font-size:20px;line-height:28px;font-weight:600;color:#21385C">Поиск по FIDE ID</h3>
+          <p style="margin:0 0 16px;font-size:14px;line-height:20px;color:#5C6A80">Введите номер — данные игрока подставятся автоматически. Для примера: 13901234.</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <input value="{{ fideId }}" onInput="{{ setFide }}" placeholder="13901234" style="flex:1 1 220px;height:44px;padding:0 12px;border:1px solid #DCE2EB;border-radius:8px;font-variant-numeric:tabular-nums" />
+            <button onClick="{{ findFideBtn }}" style="height:44px;padding:0 20px;border-radius:8px;background:#E9A23B;color:#21385C;border:0;font-weight:600;cursor:pointer;transition:background 150ms" style-hover="background:#C9862A">{{ findLabel }}</button>
+          </div>
+          <sc-if value="{{ hasFideMsg }}" hint-placeholder-val="{{ false }}">
+            <p style="{{ fideMsgStyle }}">{{ fideMsg }}</p>
+          </sc-if>
+        </div>
+
+        <sc-for list="{{ participants }}" as="p" hint-placeholder-count="2">
+          <div style="background:#fff;border:1px solid #DCE2EB;border-radius:12px;padding:16px;margin-bottom:16px">
+            <sc-if value="{{ p.collapsed }}">
+              <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+                <span style="flex:1 1 auto;min-width:0;font-weight:600;color:#21385C">{{ p.summary }}</span>
+                <button onClick="{{ p.edit }}" style="height:36px;padding:0 12px;border:1px solid #DCE2EB;border-radius:8px;background:#fff;font-size:14px;font-weight:500;color:#21385C;cursor:pointer" style-hover="border-color:#21385C">Редактировать</button>
+                <button onClick="{{ p.remove }}" style="height:36px;padding:0 12px;border:1px solid #DCE2EB;border-radius:8px;background:#fff;font-size:14px;font-weight:500;color:#C0392B;cursor:pointer" style-hover="border-color:#C0392B">Удалить</button>
+              </div>
+            </sc-if>
+            <sc-if value="{{ p.open }}">
+              <div>
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px">
+                  <h4 style="margin:0;font-size:20px;line-height:28px;font-weight:600;color:#21385C">Участник {{ p.num }}</h4>
+                  <button onClick="{{ p.remove }}" style="height:36px;padding:0 12px;border:1px solid #DCE2EB;border-radius:8px;background:#fff;font-size:14px;font-weight:500;color:#C0392B;cursor:pointer" style-hover="border-color:#C0392B">Удалить</button>
+                </div>
+                <div style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+                  <label style="display:block">
+                    <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80;margin-bottom:4px">ФИО</span>
+                    <input value="{{ p.name }}" onInput="{{ p.onName }}" data-err="{{ p.nameErrFlag }}" placeholder="Ким Даниил" style="{{ p.nameStyle }}" />
+                    <sc-if value="{{ p.hasNameErr }}"><span style="display:block;margin-top:4px;font-size:13px;line-height:16px;color:#C0392B">{{ p.nameErr }}</span></sc-if>
+                  </label>
+                  <label style="display:block">
+                    <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80;margin-bottom:4px">Дата рождения</span>
+                    <input type="date" value="{{ p.birth }}" onInput="{{ p.onBirth }}" data-err="{{ p.birthErrFlag }}" style="{{ p.birthStyle }}" />
+                    <sc-if value="{{ p.hasBirthErr }}"><span style="display:block;margin-top:4px;font-size:13px;line-height:16px;color:#C0392B">{{ p.birthErr }}</span></sc-if>
+                    <sc-if value="{{ p.noBirthErr }}"><span style="display:block;margin-top:4px;font-size:13px;line-height:16px;color:#5C6A80">От года рождения зависит категория</span></sc-if>
+                  </label>
+                  <label style="display:block">
+                    <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80;margin-bottom:4px">FIDE ID</span>
+                    <input value="{{ p.fide }}" onInput="{{ p.onFide }}" placeholder="не обязательно" style="height:44px;width:100%;padding:0 12px;border:1px solid #DCE2EB;border-radius:8px;font-variant-numeric:tabular-nums" />
+                  </label>
+                  <label style="display:block">
+                    <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80;margin-bottom:4px">Паспорт / свидетельство</span>
+                    <input value="{{ p.passport }}" onInput="{{ p.onPass }}" placeholder="AN3212345" style="height:44px;width:100%;padding:0 12px;border:1px solid #DCE2EB;border-radius:8px" />
+                  </label>
+                  <label style="display:block">
+                    <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80;margin-bottom:4px">Электронная почта</span>
+                    <input value="{{ p.email }}" onInput="{{ p.onEmail }}" placeholder="parent@example.kg" style="height:44px;width:100%;padding:0 12px;border:1px solid #DCE2EB;border-radius:8px" />
+                  </label>
+                  <label style="display:block">
+                    <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80;margin-bottom:4px">Телефон</span>
+                    <input value="{{ p.phone }}" onInput="{{ p.onPhone }}" placeholder="+996 555 12-34-56" style="height:44px;width:100%;padding:0 12px;border:1px solid #DCE2EB;border-radius:8px" />
+                  </label>
+                  <label style="display:block">
+                    <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80;margin-bottom:4px">Категория</span>
+                    <select value="{{ p.cat }}" onChange="{{ p.onCat }}" style="height:44px;width:100%;padding:0 10px;border:1px solid #DCE2EB;border-radius:8px;background:#fff">
+                      <option value="Юноши до 14">Юноши до 14</option>
+                      <option value="Девушки до 14">Девушки до 14</option>
+                      <option value="Юноши до 18">Юноши до 18</option>
+                      <option value="Девушки до 18">Девушки до 18</option>
+                    </select>
+                  </label>
+                  <label style="display:block">
+                    <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80;margin-bottom:4px">Роль в делегации</span>
+                    <select value="{{ p.role }}" onChange="{{ p.onRole }}" style="height:44px;width:100%;padding:0 10px;border:1px solid #DCE2EB;border-radius:8px;background:#fff">
+                      <option value="Игрок">Игрок</option>
+                      <option value="Глава делегации">Глава делегации</option>
+                      <option value="Родитель">Родитель</option>
+                      <option value="Тренер">Тренер</option>
+                      <option value="Сопровождающий">Сопровождающий</option>
+                    </select>
+                  </label>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+
+        <button onClick="{{ addParticipant }}" style="width:100%;height:56px;border:1px dashed #DCE2EB;border-radius:8px;background:#fff;color:#21385C;font-size:16px;font-weight:600;cursor:pointer;transition:border-color 150ms" style-hover="border-color:#E9A23B">+ Добавить участника</button>
+
+        <label style="display:flex;gap:12px;align-items:flex-start;margin:24px 0;cursor:pointer">
+          <input type="checkbox" checked="{{ agree }}" onChange="{{ toggleAgree }}" style="width:20px;height:20px;margin:2px 0 0;accent-color:#21385C;flex:0 0 auto" />
+          <span style="font-size:14px;line-height:20px;color:#2B3A50">Согласен на обработку персональных данных участников и передачу их организатору соревнования
+            <sc-if value="{{ agreeErr }}"><span style="display:block;margin-top:4px;font-size:13px;line-height:16px;color:#C0392B">Нужно согласие на обработку персональных данных</span></sc-if>
+          </span>
+        </label>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="{{ backToComp }}" style="display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 20px;border-radius:8px;background:#fff;color:#21385C;border:1px solid #DCE2EB;font-weight:600">Назад</a>
+          <button onClick="{{ next1Btn }}" style="height:44px;padding:0 24px;border-radius:8px;background:#21385C;color:#fff;border:0;font-weight:600;cursor:pointer;transition:background 150ms" style-hover="background:#16283F">Далее</button>
+        </div>
+      </sc-if>
+
+      <!-- ---------- ШАГ 2: проживание и трансфер ---------- -->
+      <sc-if value="{{ isRegStay }}" hint-placeholder-val="{{ false }}">
+        <h3 style="margin:0 0 16px;font-size:24px;line-height:32px;font-weight:600;color:#21385C">Проживание</h3>
+        <div style="display:grid;gap:12px;margin-bottom:24px">
+          <sc-for list="{{ stayOptions }}" as="o" hint-placeholder-count="3">
+            <button onClick="{{ o.pick }}" style="{{ o.style }}">
+              <span style="{{ o.dotStyle }}"></span>
+              <span style="display:block;text-align:left">
+                <span style="display:block;font-weight:600;color:#21385C">{{ o.label }}</span>
+                <span style="display:block;font-size:14px;line-height:20px;color:#5C6A80">{{ o.note }}</span>
+              </span>
+            </button>
+          </sc-for>
+        </div>
+        <div style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-bottom:32px">
+          <label style="display:block">
+            <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80;margin-bottom:4px">Дата заезда</span>
+            <input type="date" value="{{ stayIn }}" onInput="{{ setStayIn }}" style="height:44px;width:100%;padding:0 12px;border:1px solid #DCE2EB;border-radius:8px" />
+          </label>
+          <label style="display:block">
+            <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80;margin-bottom:4px">Дата выезда</span>
+            <input type="date" value="{{ stayOut }}" onInput="{{ setStayOut }}" style="height:44px;width:100%;padding:0 12px;border:1px solid #DCE2EB;border-radius:8px" />
+          </label>
+        </div>
+
+        <h3 style="margin:0 0 16px;font-size:24px;line-height:32px;font-weight:600;color:#21385C">Трансфер</h3>
+        <label style="display:flex;gap:12px;align-items:center;margin-bottom:16px;cursor:pointer">
+          <input type="checkbox" checked="{{ transfer }}" onChange="{{ toggleTransfer }}" style="width:20px;height:20px;accent-color:#21385C" />
+          <span>Нужен трансфер из аэропорта — 800 сом с человека</span>
+        </label>
+        <sc-if value="{{ transfer }}" hint-placeholder-val="{{ true }}">
+          <div style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-bottom:32px">
+            <label style="display:block">
+              <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80;margin-bottom:4px">Дата и время прилёта</span>
+              <input type="datetime-local" value="{{ flight }}" onInput="{{ setFlight }}" style="height:44px;width:100%;padding:0 12px;border:1px solid #DCE2EB;border-radius:8px" />
+            </label>
+            <label style="display:block">
+              <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80;margin-bottom:4px">Номер рейса</span>
+              <input value="{{ flightNo }}" onInput="{{ setFlightNo }}" style="height:44px;width:100%;padding:0 12px;border:1px solid #DCE2EB;border-radius:8px" />
+            </label>
+            <label style="display:block">
+              <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80;margin-bottom:4px">Количество человек</span>
+              <input value="{{ pax }}" onInput="{{ setPax }}" style="height:44px;width:100%;padding:0 12px;border:1px solid #DCE2EB;border-radius:8px;font-variant-numeric:tabular-nums" />
+            </label>
+          </div>
+        </sc-if>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <button onClick="{{ backStep }}" style="height:44px;padding:0 20px;border-radius:8px;background:#fff;color:#21385C;border:1px solid #DCE2EB;font-weight:600;cursor:pointer" style-hover="border-color:#21385C">Назад</button>
+          <button onClick="{{ toPayment }}" style="height:44px;padding:0 24px;border-radius:8px;background:#21385C;color:#fff;border:0;font-weight:600;cursor:pointer;transition:background 150ms" style-hover="background:#16283F">Далее</button>
+        </div>
+      </sc-if>
+
+      <!-- ---------- ШАГ 3: оплата ---------- -->
+      <sc-if value="{{ isRegPay }}" hint-placeholder-val="{{ false }}">
+        <h3 style="margin:0 0 16px;font-size:24px;line-height:32px;font-weight:600;color:#21385C">Сводка заявки</h3>
+        <div style="overflow-x:auto;border:1px solid #DCE2EB;border-radius:8px;background:#fff;margin-bottom:24px">
+          <table>
+            <thead><tr>
+              <th style="text-align:left;padding:12px 16px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Позиция</th>
+              <th style="text-align:left;padding:12px 16px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Расчёт</th>
+              <th style="text-align:right;padding:12px 16px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Сумма</th>
+            </tr></thead>
+            <tbody>
+              <sc-for list="{{ summaryRows }}" as="r" hint-placeholder-count="3">
+                <tr>
+                  <td style="padding:12px 16px;border-top:1px solid #DCE2EB;height:48px">{{ r.name }}</td>
+                  <td style="padding:12px 16px;border-top:1px solid #DCE2EB;color:#5C6A80">{{ r.calc }}</td>
+                  <td style="padding:12px 16px;border-top:1px solid #DCE2EB;text-align:right;font-weight:600;color:#21385C">{{ r.sum }}</td>
+                </tr>
+              </sc-for>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin:0 0 24px;font-size:32px;line-height:40px;font-weight:700;color:#21385C">К оплате: {{ totalText }}</p>
+
+        <h3 style="margin:0 0 16px;font-size:24px;line-height:32px;font-weight:600;color:#21385C">Способ оплаты</h3>
+        <div style="display:grid;gap:12px;margin-bottom:24px">
+          <button onClick="{{ pickCard }}" style="{{ cardStyle }}">
+            <span style="{{ cardDot }}"></span>
+            <span style="display:block;text-align:left">
+              <span style="display:block;font-weight:600;color:#21385C">Оплата картой через Freedom Pay</span>
+              <span style="display:block;font-size:14px;line-height:20px;color:#5C6A80">Visa · Mastercard · Элкарт</span>
+            </span>
+          </button>
+          <button onClick="{{ pickInvoice }}" style="{{ invStyle }}">
+            <span style="{{ invDot }}"></span>
+            <span style="display:block;text-align:left">
+              <span style="display:block;font-weight:600;color:#21385C">Получить счёт для оплаты по реквизитам</span>
+              <span style="display:block;font-size:14px;line-height:20px;color:#5C6A80">Для организаций и спортивных школ</span>
+            </span>
+          </button>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+          <button onClick="{{ backStep }}" style="height:44px;padding:0 20px;border-radius:8px;background:#fff;color:#21385C;border:1px solid #DCE2EB;font-weight:600;cursor:pointer" style-hover="border-color:#21385C">Назад</button>
+          <button onClick="{{ payBtn }}" style="height:44px;padding:0 24px;border-radius:8px;background:#21385C;color:#fff;border:0;font-weight:600;cursor:pointer;transition:background 150ms" style-hover="background:#16283F">{{ payLabel }}</button>
+        </div>
+        <p style="margin:12px 0 0;font-size:13px;line-height:16px;color:#5C6A80">После оплаты подтверждение и счёт придут на почту</p>
+      </sc-if>
+    </div>
+
+    <!-- липкая карточка «Ваша заявка» -->
+    <aside style="flex:0 1 320px;min-width:280px;position:sticky;top:96px;background:#fff;border:1px solid #DCE2EB;border-radius:12px;padding:24px;box-shadow:0 1px 2px rgba(33,56,92,.06),0 8px 24px rgba(33,56,92,.06)">
+      <h3 style="margin:0 0 16px;font-size:20px;line-height:28px;font-weight:600;color:#21385C">Ваша заявка</h3>
+      <sc-for list="{{ draftPeople }}" as="p" hint-placeholder-count="2">
+        <p style="margin:0 0 8px;font-size:14px;line-height:20px;color:#2B3A50">{{ p.line }}</p>
+      </sc-for>
+      <div style="margin:16px 0;border-top:1px solid #DCE2EB"></div>
+      <sc-for list="{{ costRows }}" as="r" hint-placeholder-count="3">
+        <p style="margin:0 0 8px;display:flex;justify-content:space-between;gap:12px;font-size:14px;line-height:20px">
+          <span style="color:#5C6A80">{{ r.name }}</span><span style="font-variant-numeric:tabular-nums;color:#2B3A50">{{ r.sum }}</span>
+        </p>
+      </sc-for>
+      <div style="margin:16px 0;border-top:1px solid #DCE2EB"></div>
+      <p style="margin:0;display:flex;justify-content:space-between;gap:12px;font-size:20px;line-height:28px;font-weight:600;color:#21385C">
+        <span>Итого</span><span style="font-variant-numeric:tabular-nums">{{ totalText }}</span>
+      </p>
+    </aside>
+  </div>
+</main>
+</sc-if>
+
+<!-- ================= 8.8 ЗАЯВКА ПРИНЯТА ================= -->
+<sc-if value="{{ isRegDone }}" hint-placeholder-val="{{ false }}">
+<main style="max-width:640px;margin:0 auto;padding:64px 24px">
+  <div style="background:#fff;border:1px solid #DCE2EB;border-radius:12px;padding:48px 32px;text-align:center;box-shadow:0 1px 2px rgba(33,56,92,.06),0 8px 24px rgba(33,56,92,.06)">
+    <div style="width:64px;height:64px;margin:0 auto 24px;border-radius:999px;background:#FDF1DE;display:grid;place-items:center;font-size:32px;color:#C9862A">✓</div>
+    <h2 style="margin:0 0 12px;font-size:32px;line-height:40px;font-weight:700;color:#21385C">Заявка №2026-0184 принята</h2>
+    <p style="margin:0 0 24px;color:#5C6A80">Подтверждение и счёт отправлены на t.abdyrahmanov@example.kg</p>
+    <div style="text-align:left;background:#F5F7FA;border-radius:8px;padding:16px;margin-bottom:24px">
+      <sc-for list="{{ draftPeople }}" as="p" hint-placeholder-count="2">
+        <p style="margin:0 0 8px;font-size:14px;line-height:20px;color:#2B3A50">{{ p.line }}</p>
+      </sc-for>
+      <p style="margin:12px 0 0;padding-top:12px;border-top:1px solid #DCE2EB;display:flex;justify-content:space-between;font-weight:600;color:#21385C">
+        <span>Сумма</span><span style="font-variant-numeric:tabular-nums">{{ totalText }}</span>
+      </p>
+    </div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="{{ backToComp }}" style="display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 20px;border-radius:8px;background:#21385C;color:#fff;font-weight:600">Вернуться к соревнованию</a>
+      <a href="#/" style="display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 20px;border-radius:8px;background:#fff;color:#21385C;border:1px solid #DCE2EB;font-weight:600">На главную</a>
+    </div>
+    <p style="margin:24px 0 0;font-size:13px;line-height:16px;color:#5C6A80">Изменить заявку можно по ссылке из письма</p>
+  </div>
+</main>
+</sc-if>
+<!-- ================= 8.10 ВХОД В АДМИНКУ ================= -->
+<sc-if value="{{ isLogin }}" hint-placeholder-val="{{ false }}">
+<main style="position:relative;min-height:100vh;display:grid;place-items:center;padding:24px;background:#F5F7FA">
+  <div style="position:absolute;inset:0;opacity:.4;background-image:linear-gradient(45deg,#E7EBF2 25%,transparent 25%,transparent 75%,#E7EBF2 75%),linear-gradient(45deg,#E7EBF2 25%,transparent 25%,transparent 75%,#E7EBF2 75%);background-size:48px 48px;background-position:0 0,24px 24px"></div>
+  <div style="position:relative;width:100%;max-width:420px;background:#fff;border:1px solid #DCE2EB;border-radius:12px;padding:32px;box-shadow:0 1px 2px rgba(33,56,92,.06),0 8px 24px rgba(33,56,92,.06)">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
+      <span style="width:40px;height:40px;border-radius:8px;background:#E9A23B;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;overflow:hidden;flex:0 0 auto">
+        <span style="background:#fff"></span><span></span><span></span><span style="background:#fff"></span>
+      </span>
+      <span style="font-size:13px;line-height:16px;font-weight:700;color:#21385C;letter-spacing:.04em">KYRGYZ<br />CHESS UNION</span>
+    </div>
+    <h2 style="margin:0 0 24px;font-size:24px;line-height:32px;font-weight:600;color:#21385C">Система управления соревнованиями</h2>
+    <label style="display:block;margin-bottom:16px">
+      <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80;margin-bottom:4px">Электронная почта</span>
+      <input value="{{ loginEmail }}" onInput="{{ setEmail }}" style="height:44px;width:100%;padding:0 12px;border:1px solid #DCE2EB;border-radius:8px" />
+    </label>
+    <label style="display:block;margin-bottom:8px">
+      <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80;margin-bottom:4px">Пароль</span>
+      <input type="password" value="{{ loginPass }}" onInput="{{ setPass }}" style="height:44px;width:100%;padding:0 12px;border:1px solid #DCE2EB;border-radius:8px" />
+    </label>
+    <button onClick="{{ stub }}" style="border:0;background:transparent;padding:0;margin-bottom:24px;font-size:14px;color:#5C6A80;cursor:pointer;text-decoration:underline">Забыли пароль?</button>
+    <button onClick="{{ doLogin }}" style="width:100%;height:44px;border-radius:8px;background:#21385C;color:#fff;border:0;font-weight:600;cursor:pointer;transition:background 150ms" style-hover="background:#16283F">Войти</button>
+    <p style="margin:24px 0 0;font-size:13px;line-height:16px;color:#5C6A80">Учётные записи создаёт администратор федерации. Самостоятельная регистрация недоступна.</p>
+  </div>
+</main>
+</sc-if>
+
+<!-- ================= КАРКАС АДМИНКИ ================= -->
+<sc-if value="{{ isAdminShell }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;min-height:100vh;background:#F5F7FA;flex-wrap:wrap">
+  <!-- боковая панель -->
+  <aside style="flex:0 0 240px;min-width:200px;background:#16283F;padding:16px 12px;display:flex;flex-direction:column;gap:24px">
+    <a href="#/admin" style="display:flex;align-items:center;gap:12px;padding:8px">
+      <span style="width:36px;height:36px;border-radius:8px;background:#fff;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;overflow:hidden;padding:4px;flex:0 0 auto">
+        <span style="background:#E9A23B"></span><span></span><span></span><span style="background:#E9A23B"></span>
+      </span>
+      <span style="font-size:13px;line-height:16px;font-weight:700;color:#fff;letter-spacing:.04em">KYRGYZ<br />CHESS UNION</span>
+    </a>
+    <nav style="display:flex;flex-direction:column;gap:2px">
+      <sc-for list="{{ adminNav }}" as="n" hint-placeholder-count="7">
+        <button onClick="{{ n.go }}" style="{{ n.style }}">{{ n.label }}</button>
+      </sc-for>
+    </nav>
+    <a href="#/" style="margin-top:auto;padding:12px;font-size:14px;color:#8FA2BE">← На сайт</a>
+  </aside>
+
+  <!-- контент -->
+  <div style="flex:1 1 480px;min-width:0;display:flex;flex-direction:column">
+    <header style="background:#fff;border-bottom:1px solid #DCE2EB;padding:12px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+      <h2 style="margin:0;font-size:20px;line-height:28px;font-weight:600;color:#21385C">{{ adminTitle }}</h2>
+      <input placeholder="Поиск по системе" onInput="{{ noop }}" style="margin-left:auto;height:36px;width:220px;padding:0 12px;border:1px solid #DCE2EB;border-radius:8px;font-size:14px" />
+      <span style="display:flex;align-items:center;gap:8px">
+        <span style="width:32px;height:32px;border-radius:999px;background:#E7EBF2;display:grid;place-items:center;font-size:13px;font-weight:600;color:#21385C">АС</span>
+        <span style="font-size:14px;line-height:20px;color:#2B3A50">А. Садыков<span style="display:block;font-size:13px;line-height:16px;color:#5C6A80">Администратор</span></span>
+      </span>
+      <button onClick="{{ doLogout }}" style="height:36px;padding:0 12px;border:1px solid #DCE2EB;border-radius:8px;background:#fff;font-size:14px;font-weight:500;color:#5C6A80;cursor:pointer" style-hover="border-color:#21385C;color:#21385C">Выйти</button>
+    </header>
+
+    <main style="padding:24px;flex:1 1 auto">
+      <!-- ---------- 8.11 список соревнований ---------- -->
+      <sc-if value="{{ isAdminList }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:16px">
+          <h3 style="margin:0;font-size:24px;line-height:32px;font-weight:600;color:#21385C">Соревнования</h3>
+          <a href="#/admin/competitions/new" style="margin-left:auto;display:inline-flex;align-items:center;height:36px;padding:0 16px;border-radius:8px;background:#21385C;color:#fff;font-size:14px;font-weight:600">+ Создать соревнование</a>
+        </div>
+        <div style="background:#F5F7FA;border:1px solid #DCE2EB;border-radius:8px;padding:12px;display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px">
+          <input value="{{ adminQuery }}" onInput="{{ setAdminQuery }}" placeholder="Поиск по названию" style="flex:1 1 220px;height:36px;padding:0 12px;border:1px solid #DCE2EB;border-radius:8px;font-size:14px;background:#fff" />
+          <select value="{{ adminStatus }}" onChange="{{ setAdminStatus }}" style="height:36px;padding:0 10px;border:1px solid #DCE2EB;border-radius:8px;font-size:14px;background:#fff">
+            <option value="all">Все статусы</option>
+            <option value="upcoming">Предстоящие</option>
+            <option value="live">Идут сейчас</option>
+            <option value="done">Завершённые</option>
+            <option value="draft">Черновики</option>
+          </select>
+          <select value="{{ adminYear }}" onChange="{{ setAdminYear }}" style="height:36px;padding:0 10px;border:1px solid #DCE2EB;border-radius:8px;font-size:14px;background:#fff">
+            <option value="all">Все годы</option>
+            <option value="2026">2026</option>
+            <option value="2025">2025</option>
+          </select>
+        </div>
+        <div style="overflow-x:auto;background:#fff;border:1px solid #DCE2EB;border-radius:8px">
+          <table style="font-size:14px">
+            <thead><tr>
+              <th style="text-align:left;padding:10px 16px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Название</th>
+              <th style="text-align:left;padding:10px 16px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Даты</th>
+              <th style="text-align:left;padding:10px 16px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Город</th>
+              <th style="text-align:left;padding:10px 16px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Статус</th>
+              <th style="text-align:right;padding:10px 16px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Заявок</th>
+              <th style="text-align:right;padding:10px 16px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Оплачено</th>
+              <th style="text-align:right;padding:10px 16px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Действия</th>
+            </tr></thead>
+            <tbody>
+              <sc-for list="{{ adminComps }}" as="c" hint-placeholder-count="6">
+                <tr style="{{ c.rowStyle }}">
+                  <td onClick="{{ c.open }}" style="padding:10px 16px;border-top:1px solid #DCE2EB;font-weight:600;color:#21385C;cursor:pointer;max-width:320px">{{ c.title }}</td>
+                  <td onClick="{{ c.open }}" style="padding:10px 16px;border-top:1px solid #DCE2EB;cursor:pointer;white-space:nowrap">{{ c.dates }}</td>
+                  <td onClick="{{ c.open }}" style="padding:10px 16px;border-top:1px solid #DCE2EB;cursor:pointer">{{ c.city }}</td>
+                  <td style="padding:10px 16px;border-top:1px solid #DCE2EB"><span style="{{ c.pillStyle }}"><sc-if value="{{ c.live }}"><span style="width:6px;height:6px;border-radius:999px;background:#E9A23B;animation:kcuPulse 1.6s infinite"></span></sc-if>{{ c.statusText }}</span></td>
+                  <td style="padding:10px 16px;border-top:1px solid #DCE2EB;text-align:right">{{ c.apps }}</td>
+                  <td style="padding:10px 16px;border-top:1px solid #DCE2EB;text-align:right">{{ c.paid }}</td>
+                  <td style="padding:10px 16px;border-top:1px solid #DCE2EB;text-align:right;position:relative">
+                    <button onClick="{{ c.menu }}" style="width:36px;height:36px;border:1px solid #DCE2EB;border-radius:8px;background:#fff;cursor:pointer;color:#5C6A80" style-hover="border-color:#21385C">⋯</button>
+                    <sc-if value="{{ c.menuOpen }}">
+                      <span style="position:absolute;right:16px;top:48px;z-index:20;display:flex;flex-direction:column;min-width:180px;background:#fff;border:1px solid #DCE2EB;border-radius:8px;box-shadow:0 8px 24px rgba(33,56,92,.12);overflow:hidden">
+                        <button onClick="{{ c.edit }}" style="text-align:left;padding:10px 14px;border:0;background:#fff;font-size:14px;color:#21385C;cursor:pointer" style-hover="background:#F5F7FA">Редактировать</button>
+                        <button onClick="{{ c.copy }}" style="text-align:left;padding:10px 14px;border:0;background:#fff;font-size:14px;color:#21385C;cursor:pointer" style-hover="background:#F5F7FA">Копировать</button>
+                        <button onClick="{{ c.archive }}" style="text-align:left;padding:10px 14px;border:0;background:#fff;font-size:14px;color:#21385C;cursor:pointer" style-hover="background:#F5F7FA">Архивировать</button>
+                      </span>
+                    </sc-if>
+                  </td>
+                </tr>
+              </sc-for>
+            </tbody>
+          </table>
+        </div>
+      </sc-if>
+
+      <!-- ---------- 8.12 мастер создания ---------- -->
+      <sc-if value="{{ isWizard }}" hint-placeholder-val="{{ false }}">
+        <h3 style="margin:0 0 16px;font-size:24px;line-height:32px;font-weight:600;color:#21385C">Создание соревнования</h3>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px">
+          <sc-for list="{{ wizSteps }}" as="w" hint-placeholder-count="5">
+            <button onClick="{{ w.go }}" style="{{ w.style }}"><span style="{{ w.numStyle }}">{{ w.num }}</span>{{ w.label }}</button>
+          </sc-for>
+        </div>
+        <div style="background:#fff;border:1px solid #DCE2EB;border-radius:12px;padding:24px">
+          <sc-if value="{{ wz1 }}" hint-placeholder-val="{{ true }}">
+            <div style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+              <label style="display:block;grid-column:1/-1">
+                <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80;margin-bottom:4px">Название соревнования</span>
+                <input value="{{ wiz.title }}" onInput="{{ wSetTitle }}" placeholder="Первенство КР среди юношей и девушек до 16 лет" style="height:44px;width:100%;padding:0 12px;border:1px solid #DCE2EB;border-radius:8px" />
+              </label>
+              <label style="display:block">
+                <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80;margin-bottom:4px">Город</span>
+                <input value="{{ wiz.city }}" onInput="{{ wSetCity }}" style="height:44px;width:100%;padding:0 12px;border:1px solid #DCE2EB;border-radius:8px" />
+              </label>
+              <label style="display:block">
+                <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80;margin-bottom:4px">Место проведения</span>
+                <input value="{{ wiz.venue }}" onInput="{{ wSetVenue }}" placeholder="Дворец спорта" style="height:44px;width:100%;padding:0 12px;border:1px solid #DCE2EB;border-radius:8px" />
+              </label>
+              <label style="display:block">
+                <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80;margin-bottom:4px">Дата начала</span>
+                <input type="date" value="{{ wiz.from }}" onInput="{{ wSetFrom }}" style="height:44px;width:100%;padding:0 12px;border:1px solid #DCE2EB;border-radius:8px" />
+              </label>
+              <label style="display:block">
+                <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80;margin-bottom:4px">Дата окончания</span>
+                <input type="date" value="{{ wiz.to }}" onInput="{{ wSetTo }}" style="height:44px;width:100%;padding:0 12px;border:1px solid #DCE2EB;border-radius:8px" />
+              </label>
+              <label style="display:block">
+                <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80;margin-bottom:4px">Вид шахмат</span>
+                <select value="{{ wiz.kind }}" onChange="{{ wSetKind }}" style="height:44px;width:100%;padding:0 10px;border:1px solid #DCE2EB;border-radius:8px;background:#fff">
+                  <option value="Классические шахматы">Классические шахматы</option>
+                  <option value="Быстрые шахматы">Быстрые шахматы</option>
+                  <option value="Блиц">Блиц</option>
+                </select>
+              </label>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ wz2 }}" hint-placeholder-val="{{ false }}">
+            <h4 style="margin:0 0 16px;font-size:20px;line-height:28px;font-weight:600;color:#21385C">Категории и тарифы</h4>
+            <div style="overflow-x:auto;border:1px solid #DCE2EB;border-radius:8px;margin-bottom:16px">
+              <table style="font-size:14px">
+                <thead><tr>
+                  <th style="text-align:left;padding:10px 12px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Категория</th>
+                  <th style="text-align:left;padding:10px 12px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Год рождения</th>
+                  <th style="text-align:left;padding:10px 12px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Лимит</th>
+                  <th style="text-align:left;padding:10px 12px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Взнос, сом</th>
+                  <th style="background:#F5F7FA"></th>
+                </tr></thead>
+                <tbody>
+                  <sc-for list="{{ wizCats }}" as="c" hint-placeholder-count="4">
+                    <tr style="{{ c.rowStyle }}">
+                      <td style="padding:6px 12px;border-top:1px solid #DCE2EB"><input value="{{ c.name }}" onInput="{{ c.onName }}" style="height:36px;width:100%;min-width:160px;padding:0 10px;border:1px solid #DCE2EB;border-radius:8px;font-size:14px" /></td>
+                      <td style="padding:6px 12px;border-top:1px solid #DCE2EB"><input value="{{ c.born }}" onInput="{{ c.onBorn }}" style="height:36px;width:100%;min-width:140px;padding:0 10px;border:1px solid #DCE2EB;border-radius:8px;font-size:14px" /></td>
+                      <td style="padding:6px 12px;border-top:1px solid #DCE2EB"><input value="{{ c.limit }}" onInput="{{ c.onLimit }}" style="height:36px;width:80px;padding:0 10px;border:1px solid #DCE2EB;border-radius:8px;font-size:14px;font-variant-numeric:tabular-nums" /></td>
+                      <td style="padding:6px 12px;border-top:1px solid #DCE2EB"><input value="{{ c.fee }}" onInput="{{ c.onFee }}" style="height:36px;width:100px;padding:0 10px;border:1px solid #DCE2EB;border-radius:8px;font-size:14px;font-variant-numeric:tabular-nums" /></td>
+                      <td style="padding:6px 12px;border-top:1px solid #DCE2EB;text-align:right"><button onClick="{{ c.remove }}" style="width:36px;height:36px;border:1px solid #DCE2EB;border-radius:8px;background:#fff;color:#C0392B;cursor:pointer" style-hover="border-color:#C0392B">×</button></td>
+                    </tr>
+                  </sc-for>
+                </tbody>
+              </table>
+            </div>
+            <button onClick="{{ addCat }}" style="height:36px;padding:0 16px;border:1px dashed #DCE2EB;border-radius:8px;background:#fff;font-size:14px;font-weight:600;color:#21385C;cursor:pointer;margin-bottom:24px" style-hover="border-color:#E9A23B">+ Добавить категорию</button>
+            <h4 style="margin:0 0 12px;font-size:20px;line-height:28px;font-weight:600;color:#21385C">Скидки</h4>
+            <label style="display:flex;gap:12px;align-items:center;margin-bottom:8px;cursor:pointer">
+              <input type="checkbox" checked="{{ wiz.discTeam }}" onChange="{{ wSetDiscTeam }}" style="width:20px;height:20px;accent-color:#21385C" />
+              <span style="font-size:14px">Скидка 50% для членов сборной</span>
+            </label>
+            <label style="display:flex;gap:12px;align-items:center;cursor:pointer">
+              <input type="checkbox" checked="{{ wiz.discGM }}" onChange="{{ wSetDiscGM }}" style="width:20px;height:20px;accent-color:#21385C" />
+              <span style="font-size:14px">Бесплатно для гроссмейстеров</span>
+            </label>
+          </sc-if>
+
+          <sc-if value="{{ wz3 }}" hint-placeholder-val="{{ false }}">
+            <h4 style="margin:0 0 16px;font-size:20px;line-height:28px;font-weight:600;color:#21385C">Проживание и трансфер</h4>
+            <div style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+              <label style="display:block;grid-column:1/-1">
+                <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80;margin-bottom:4px">Гостиница</span>
+                <input value="{{ wiz.hotel }}" onInput="{{ wSetHotel }}" style="height:44px;width:100%;padding:0 12px;border:1px solid #DCE2EB;border-radius:8px" />
+              </label>
+              <label style="display:block">
+                <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80;margin-bottom:4px">2-местный, сом/сутки</span>
+                <input value="{{ wiz.priceDouble }}" onInput="{{ wSetPD }}" style="height:44px;width:100%;padding:0 12px;border:1px solid #DCE2EB;border-radius:8px;font-variant-numeric:tabular-nums" />
+              </label>
+              <label style="display:block">
+                <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80;margin-bottom:4px">1-местный, сом/сутки</span>
+                <input value="{{ wiz.priceSingle }}" onInput="{{ wSetPS }}" style="height:44px;width:100%;padding:0 12px;border:1px solid #DCE2EB;border-radius:8px;font-variant-numeric:tabular-nums" />
+              </label>
+              <label style="display:block">
+                <span style="display:block;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80;margin-bottom:4px">Трансфер, сом</span>
+                <input value="{{ wiz.transferPrice }}" onInput="{{ wSetTP }}" style="height:44px;width:100%;padding:0 12px;border:1px solid #DCE2EB;border-radius:8px;font-variant-numeric:tabular-nums" />
+              </label>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ wz4 }}" hint-placeholder-val="{{ false }}">
+            <h4 style="margin:0 0 16px;font-size:20px;line-height:28px;font-weight:600;color:#21385C">Форма заявки</h4>
+            <p style="margin:0 0 16px;font-size:14px;line-height:20px;color:#5C6A80">Отметьте поля, обязательные для заполнения участником.</p>
+            <div style="display:grid;gap:8px">
+              <label style="display:flex;gap:12px;align-items:center;cursor:pointer"><input type="checkbox" checked="{{ wiz.needPassport }}" onChange="{{ wSetPassport }}" style="width:20px;height:20px;accent-color:#21385C" /><span style="font-size:14px">Паспорт или свидетельство о рождении</span></label>
+              <label style="display:flex;gap:12px;align-items:center;cursor:pointer"><input type="checkbox" checked="{{ wiz.needPhone }}" onChange="{{ wSetPhone }}" style="width:20px;height:20px;accent-color:#21385C" /><span style="font-size:14px">Телефон для связи</span></label>
+              <label style="display:flex;gap:12px;align-items:center;cursor:pointer"><input type="checkbox" checked="{{ wiz.needCoach }}" onChange="{{ wSetCoach }}" style="width:20px;height:20px;accent-color:#21385C" /><span style="font-size:14px">ФИО тренера</span></label>
+              <label style="display:flex;gap:12px;align-items:center;cursor:pointer"><input type="checkbox" checked="{{ wiz.needRole }}" onChange="{{ wSetRole }}" style="width:20px;height:20px;accent-color:#21385C" /><span style="font-size:14px">Роль в делегации</span></label>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ wz5 }}" hint-placeholder-val="{{ false }}">
+            <h4 style="margin:0 0 16px;font-size:20px;line-height:28px;font-weight:600;color:#21385C">Публикация</h4>
+            <div style="max-width:360px;border:1px solid #DCE2EB;border-radius:12px;overflow:hidden;margin-bottom:24px">
+              <div style="aspect-ratio:16/9;background-image:repeating-linear-gradient(45deg,#EEF1F6 0 8px,#F7F9FC 8px 16px);display:grid;place-items:center"><span style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:#5C6A80">фото соревнования</span></div>
+              <div style="padding:16px">
+                <span style="{{ wizPreviewPill }}">{{ wizPreviewStatus }}</span>
+                <p style="margin:12px 0 4px;font-size:20px;line-height:28px;font-weight:600;color:#21385C">{{ wizPreviewTitle }}</p>
+                <p style="margin:0;font-size:14px;line-height:20px;color:#5C6A80">{{ wizPreviewLine }}</p>
+              </div>
+            </div>
+            <div style="display:grid;gap:8px;margin-bottom:24px">
+              <label style="display:flex;gap:12px;align-items:center;cursor:pointer"><input type="radio" checked="{{ pubNow }}" onChange="{{ wPubNow }}" style="width:20px;height:20px;accent-color:#21385C" /><span style="font-size:14px">Опубликовать сразу</span></label>
+              <label style="display:flex;gap:12px;align-items:center;cursor:pointer"><input type="radio" checked="{{ pubDraft }}" onChange="{{ wPubDraft }}" style="width:20px;height:20px;accent-color:#21385C" /><span style="font-size:14px">Сохранить черновиком</span></label>
+            </div>
+            <button onClick="{{ publishBtn }}" style="height:36px;padding:0 20px;border-radius:8px;background:#E9A23B;color:#21385C;border:0;font-size:14px;font-weight:600;cursor:pointer;transition:background 150ms" style-hover="background:#C9862A">Опубликовать</button>
+          </sc-if>
+
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;padding-top:16px;border-top:1px solid #DCE2EB">
+            <button onClick="{{ wizBack }}" style="height:36px;padding:0 16px;border:1px solid #DCE2EB;border-radius:8px;background:#fff;font-size:14px;font-weight:600;color:#21385C;cursor:pointer" style-hover="border-color:#21385C">Назад</button>
+            <button onClick="{{ saveDraftBtn }}" style="height:36px;padding:0 16px;border:0;background:transparent;font-size:14px;font-weight:600;color:#5C6A80;cursor:pointer" style-hover="color:#21385C">Сохранить черновик</button>
+            <button onClick="{{ wizNext }}" style="margin-left:auto;height:36px;padding:0 20px;border-radius:8px;background:#21385C;color:#fff;border:0;font-size:14px;font-weight:600;cursor:pointer;transition:background 150ms" style-hover="background:#16283F">Далее</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ---------- 8.13 заявки и участники ---------- -->
+      <sc-if value="{{ isAdminApps }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px">
+          <h3 style="margin:0;font-size:24px;line-height:32px;font-weight:600;color:#21385C">Первенство КР до 18 лет · Заявки</h3>
+          <span style="display:flex;gap:8px;margin-left:auto">
+            <button onClick="{{ openExport }}" style="height:36px;padding:0 16px;border-radius:8px;background:#21385C;color:#fff;border:0;font-size:14px;font-weight:600;cursor:pointer" style-hover="background:#16283F">Выгрузить в Excel</button>
+            <button onClick="{{ stub }}" style="height:36px;padding:0 16px;border-radius:8px;background:#fff;color:#21385C;border:1px solid #DCE2EB;font-size:14px;font-weight:600;cursor:pointer" style-hover="border-color:#21385C">Экспорт TRF(x)</button>
+          </span>
+        </div>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px">
+          <a href="{{ resultsHref }}" style="font-size:14px;font-weight:600;color:#21385C;text-decoration:underline">Результаты соревнования →</a>
+        </div>
+        <div style="background:#F5F7FA;border:1px solid #DCE2EB;border-radius:8px;padding:12px;display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px">
+          <input value="{{ appQuery }}" onInput="{{ setAppQuery }}" placeholder="Поиск по ФИО" style="flex:1 1 200px;height:36px;padding:0 12px;border:1px solid #DCE2EB;border-radius:8px;font-size:14px;background:#fff" />
+          <select value="{{ appPay }}" onChange="{{ setAppPay }}" style="height:36px;padding:0 10px;border:1px solid #DCE2EB;border-radius:8px;font-size:14px;background:#fff">
+            <option value="all">Любая оплата</option>
+            <option value="paid">Оплачено</option>
+            <option value="wait">Ожидает оплаты</option>
+          </select>
+          <select value="{{ appCat }}" onChange="{{ setAppCat }}" style="height:36px;padding:0 10px;border:1px solid #DCE2EB;border-radius:8px;font-size:14px;background:#fff">
+            <option value="all">Все категории</option>
+            <option value="Юноши до 14">Юноши до 14</option>
+            <option value="Девушки до 14">Девушки до 14</option>
+            <option value="Юноши до 18">Юноши до 18</option>
+            <option value="Девушки до 18">Девушки до 18</option>
+          </select>
+          <select value="{{ appStay }}" onChange="{{ setAppStay }}" style="height:36px;padding:0 10px;border:1px solid #DCE2EB;border-radius:8px;font-size:14px;background:#fff">
+            <option value="all">Проживание: любое</option>
+            <option value="yes">С проживанием</option>
+            <option value="no">Без проживания</option>
+          </select>
+        </div>
+
+        <sc-if value="{{ hasSel }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:#FDF1DE;border:1px solid #E9A23B;border-radius:8px;padding:12px 16px;margin-bottom:12px">
+            <span style="font-size:14px;font-weight:600;color:#21385C">Выбрано: {{ selCount }}</span>
+            <button onClick="{{ confirmPayBtn }}" style="height:36px;padding:0 14px;border-radius:8px;background:#21385C;color:#fff;border:0;font-size:14px;font-weight:600;cursor:pointer" style-hover="background:#16283F">Подтвердить оплату</button>
+            <button onClick="{{ stub }}" style="height:36px;padding:0 14px;border-radius:8px;background:#fff;color:#21385C;border:1px solid #DCE2EB;font-size:14px;font-weight:600;cursor:pointer" style-hover="border-color:#21385C">Отправить письмо</button>
+            <button onClick="{{ stub }}" style="height:36px;padding:0 14px;border-radius:8px;background:#fff;color:#C0392B;border:1px solid #DCE2EB;font-size:14px;font-weight:600;cursor:pointer" style-hover="border-color:#C0392B">Отклонить</button>
+          </div>
+        </sc-if>
+
+        <div style="overflow-x:auto;background:#fff;border:1px solid #DCE2EB;border-radius:8px">
+          <table style="font-size:14px">
+            <thead><tr>
+              <th style="width:44px;padding:10px 12px;background:#F5F7FA"></th>
+              <th style="text-align:left;padding:10px 12px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">ФИО</th>
+              <th style="text-align:left;padding:10px 12px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Год</th>
+              <th style="text-align:left;padding:10px 12px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">FIDE ID</th>
+              <th style="text-align:left;padding:10px 12px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Категория</th>
+              <th style="text-align:left;padding:10px 12px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Проживание</th>
+              <th style="text-align:left;padding:10px 12px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Трансфер</th>
+              <th style="text-align:left;padding:10px 12px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Оплата</th>
+              <th style="text-align:right;padding:10px 12px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Сумма</th>
+            </tr></thead>
+            <tbody>
+              <sc-for list="{{ appRows }}" as="r" hint-placeholder-count="5">
+                <tr style="{{ r.rowStyle }}">
+                  <td style="padding:10px 12px;border-top:1px solid #DCE2EB"><input type="checkbox" checked="{{ r.checked }}" onChange="{{ r.toggle }}" style="width:20px;height:20px;accent-color:#21385C" /></td>
+                  <td style="padding:10px 12px;border-top:1px solid #DCE2EB;font-weight:600;color:#21385C">{{ r.name }}</td>
+                  <td style="padding:10px 12px;border-top:1px solid #DCE2EB">{{ r.year }}</td>
+                  <td style="padding:10px 12px;border-top:1px solid #DCE2EB;color:#5C6A80">{{ r.fideText }}</td>
+                  <td style="padding:10px 12px;border-top:1px solid #DCE2EB">{{ r.cat }}</td>
+                  <td style="padding:10px 12px;border-top:1px solid #DCE2EB;color:#5C6A80">{{ r.stay }}</td>
+                  <td style="padding:10px 12px;border-top:1px solid #DCE2EB;color:#5C6A80">{{ r.transfer }}</td>
+                  <td style="padding:10px 12px;border-top:1px solid #DCE2EB"><span style="{{ r.payStyle }}">{{ r.payText }}</span></td>
+                  <td style="padding:10px 12px;border-top:1px solid #DCE2EB;text-align:right;font-variant-numeric:tabular-nums">{{ r.sumText }}</td>
+                </tr>
+              </sc-for>
+            </tbody>
+          </table>
+        </div>
+        <sc-if value="{{ noApps }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#fff;border:1px solid #DCE2EB;border-top:0;border-radius:0 0 8px 8px;padding:48px 24px;text-align:center">
+            <p style="margin:0 0 16px;color:#5C6A80">Заявок по этим условиям нет</p>
+            <button onClick="{{ resetAppFilters }}" style="height:36px;padding:0 16px;border-radius:8px;background:#E9A23B;color:#21385C;border:0;font-size:14px;font-weight:600;cursor:pointer">Сбросить фильтры</button>
+          </div>
+        </sc-if>
+
+        <!-- выдвижная панель экспорта -->
+        <sc-if value="{{ exportOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="position:fixed;inset:0;z-index:50;background:rgba(22,40,63,.32)" onClick="{{ closeExport }}"></div>
+          <div style="position:fixed;top:0;right:0;bottom:0;z-index:51;width:min(420px,100%);background:#fff;border-left:1px solid #DCE2EB;padding:24px;overflow-y:auto;animation:kcuIn 150ms ease-out">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
+              <h3 style="margin:0;font-size:20px;line-height:28px;font-weight:600;color:#21385C">Выгрузка в Excel</h3>
+              <button onClick="{{ closeExport }}" style="margin-left:auto;width:36px;height:36px;border:1px solid #DCE2EB;border-radius:8px;background:#fff;cursor:pointer;color:#5C6A80">×</button>
+            </div>
+            <p style="margin:0 0 8px;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Шаблон</p>
+            <div style="display:grid;gap:8px;margin-bottom:24px">
+              <sc-for list="{{ exportTpls }}" as="t" hint-placeholder-count="4">
+                <button onClick="{{ t.pick }}" style="{{ t.style }}">{{ t.label }}</button>
+              </sc-for>
+            </div>
+            <p style="margin:0 0 8px;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Колонки</p>
+            <div style="display:grid;gap:8px;margin-bottom:24px">
+              <sc-for list="{{ exportCols }}" as="c" hint-placeholder-count="8">
+                <label style="display:flex;gap:12px;align-items:center;cursor:pointer"><input type="checkbox" checked="{{ c.on }}" onChange="{{ c.toggle }}" style="width:20px;height:20px;accent-color:#21385C" /><span style="font-size:14px">{{ c.label }}</span></label>
+              </sc-for>
+            </div>
+            <button onClick="{{ download }}" style="width:100%;height:44px;border-radius:8px;background:#21385C;color:#fff;border:0;font-weight:600;cursor:pointer" style-hover="background:#16283F">Скачать</button>
+          </div>
+        </sc-if>
+      </sc-if>
+
+      <!-- ---------- 8.14 результаты ---------- -->
+      <sc-if value="{{ isAdminRes }}" hint-placeholder-val="{{ false }}">
+        <h3 style="margin:0 0 16px;font-size:24px;line-height:32px;font-weight:600;color:#21385C">Чемпионат КР 2026 · Результаты</h3>
+        <div style="display:flex;gap:4px;border-bottom:1px solid #DCE2EB;margin-bottom:24px;flex-wrap:wrap">
+          <button onClick="{{ resTabFile }}" style="{{ resTabFileStyle }}">Загрузить файл TRF(x)</button>
+          <button onClick="{{ resTabManual }}" style="{{ resTabManualStyle }}">Ввести вручную</button>
+        </div>
+
+        <sc-if value="{{ resFile }}" hint-placeholder-val="{{ true }}">
+          <div style="background:#fff;border:1px dashed #DCE2EB;border-radius:12px;padding:48px 24px;text-align:center;margin-bottom:24px">
+            <p style="margin:0 0 4px;font-weight:600;color:#21385C">Перетащите файл TRF(x) сюда</p>
+            <p style="margin:0 0 16px;font-size:14px;line-height:20px;color:#5C6A80">или выберите файл на диске · до 5 МБ</p>
+            <button onClick="{{ uploadBtn }}" style="height:36px;padding:0 16px;border-radius:8px;background:#E9A23B;color:#21385C;border:0;font-size:14px;font-weight:600;cursor:pointer" style-hover="background:#C9862A">Выбрать файл</button>
+            <sc-if value="{{ isUploading }}">
+              <div style="max-width:360px;margin:24px auto 0">
+                <div style="height:8px;border-radius:999px;background:#E7EBF2;overflow:hidden"><div style="{{ uploadBar }}"></div></div>
+                <p style="margin:8px 0 0;font-size:14px;color:#5C6A80">Разбираем файл… {{ uploadPct }}</p>
+              </div>
+            </sc-if>
+            <sc-if value="{{ uploadDone }}">
+              <p style="margin:24px 0 0;display:inline-block;padding:10px 14px;border-radius:8px;background:#E6F2EB;color:#1E7A4C;font-size:14px">Тур 4: распознано 48 партий, ошибок нет</p>
+            </sc-if>
+          </div>
+          <h4 style="margin:0 0 12px;font-size:20px;line-height:28px;font-weight:600;color:#21385C">Загруженные туры</h4>
+          <div style="background:#fff;border:1px solid #DCE2EB;border-radius:8px;overflow:hidden">
+            <sc-for list="{{ uploaded }}" as="u" hint-placeholder-count="3">
+              <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid #DCE2EB;flex-wrap:wrap">
+                <span style="font-weight:600;color:#21385C">{{ u.round }}</span>
+                <span style="font-size:14px;color:#5C6A80">{{ u.note }}</span>
+                <button onClick="{{ u.again }}" style="margin-left:auto;height:36px;padding:0 14px;border:1px solid #DCE2EB;border-radius:8px;background:#fff;font-size:14px;font-weight:500;color:#21385C;cursor:pointer" style-hover="border-color:#21385C">Перезагрузить</button>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ resManual }}" hint-placeholder-val="{{ false }}">
+          <div style="overflow-x:auto;background:#fff;border:1px solid #DCE2EB;border-radius:8px;margin-bottom:16px">
+            <table style="font-size:14px">
+              <thead><tr>
+                <th style="text-align:left;padding:10px 12px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Доска</th>
+                <th style="text-align:left;padding:10px 12px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Белые</th>
+                <th style="text-align:center;padding:10px 12px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Результат</th>
+                <th style="text-align:left;padding:10px 12px;background:#F5F7FA;font-size:13px;line-height:16px;font-weight:500;color:#5C6A80">Чёрные</th>
+              </tr></thead>
+              <tbody>
+                <sc-for list="{{ manualRows }}" as="m" hint-placeholder-count="5">
+                  <tr style="{{ m.rowStyle }}">
+                    <td style="padding:10px 12px;border-top:1px solid #DCE2EB;color:#5C6A80">{{ m.board }}</td>
+                    <td style="padding:10px 12px;border-top:1px solid #DCE2EB">{{ m.white }}</td>
+                    <td style="padding:10px 12px;border-top:1px solid #DCE2EB;text-align:center">
+                      <span style="display:inline-flex;border:1px solid #DCE2EB;border-radius:8px;overflow:hidden">
+                        <sc-for list="{{ m.opts }}" as="o" hint-placeholder-count="3">
+                          <button onClick="{{ o.pick }}" style="{{ o.style }}">{{ o.label }}</button>
+                        </sc-for>
+                      </span>
+                    </td>
+                    <td style="padding:10px 12px;border-top:1px solid #DCE2EB">{{ m.black }}</td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+          </div>
+          <button onClick="{{ saveRound }}" style="height:36px;padding:0 20px;border-radius:8px;background:#21385C;color:#fff;border:0;font-size:14px;font-weight:600;cursor:pointer" style-hover="background:#16283F">Сохранить тур</button>
+        </sc-if>
+
+        <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:24px;background:#FDF1DE;border:1px solid #E9A23B;border-radius:8px;padding:12px 16px">
+          <span style="font-size:14px;line-height:20px;color:#21385C">Результаты, добавленные судьёй, публикуются после подтверждения организатором</span>
+          <button onClick="{{ publishRound }}" style="margin-left:auto;height:36px;padding:0 16px;border-radius:8px;background:#21385C;color:#fff;border:0;font-size:14px;font-weight:600;cursor:pointer" style-hover="background:#16283F">Опубликовать тур</button>
+        </div>
+      </sc-if>
+    </main>
+  </div>
+</div>
+</sc-if>
+
+<!-- ================= ПОДВАЛ ================= -->
+<sc-if value="{{ showFooter }}" hint-placeholder-val="{{ true }}">
+<footer style="margin-top:64px;background:#21385C;color:#C9D3E4">
+  <div style="max-width:1200px;margin:0 auto;padding:48px 24px;display:flex;gap:32px;flex-wrap:wrap">
+    <div style="flex:1 1 280px;min-width:0">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+        <span style="width:36px;height:36px;border-radius:8px;background:#fff;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;overflow:hidden;padding:4px;flex:0 0 auto"><span style="background:#E9A23B"></span><span></span><span></span><span style="background:#E9A23B"></span></span>
+        <span style="font-size:13px;line-height:16px;font-weight:700;color:#fff;letter-spacing:.04em">KYRGYZ<br />CHESS UNION</span>
+      </div>
+      <p style="margin:0;font-size:14px;line-height:20px">Бишкек, ул. Токтогула 125<br />+996 555 10-20-30 · info@chess.kg</p>
+    </div>
+    <div style="flex:0 1 200px">
+      <p style="margin:0 0 12px;font-size:13px;line-height:16px;font-weight:500;color:#8FA2BE">Разделы</p>
+      <p style="margin:0;font-size:14px;line-height:24px"><a href="#/competitions" style="color:#C9D3E4;display:block">Соревнования</a><a href="#/news" style="color:#C9D3E4;display:block">Новости</a><a href="#/admin/login" style="color:#C9D3E4;display:block">Вход для организаторов</a></p>
+    </div>
+    <div style="flex:0 1 200px">
+      <p style="margin:0 0 12px;font-size:13px;line-height:16px;font-weight:500;color:#8FA2BE">Мы в сети</p>
+      <p style="margin:0;font-size:14px;line-height:24px">
+        <button onClick="{{ stub }}" style="display:block;border:0;background:transparent;padding:0;color:#C9D3E4;font-size:14px;cursor:pointer">Instagram · @chess.kg</button>
+        <button onClick="{{ stub }}" style="display:block;border:0;background:transparent;padding:0;color:#C9D3E4;font-size:14px;cursor:pointer">Telegram · @chesskg</button>
+      </p>
+    </div>
+  </div>
+  <div style="border-top:1px solid #2E4870"><p style="max-width:1200px;margin:0 auto;padding:16px 24px;font-size:13px;line-height:16px;color:#8FA2BE">© 2026 Kyrgyz Chess Union. Прототип, демонстрационные данные.</p></div>
+</footer>
+</sc-if>
+
+<!-- ================= ТОСТ ================= -->
+<sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}">
+<div style="position:fixed;right:24px;bottom:24px;z-index:80;max-width:320px;background:#16283F;color:#fff;border-radius:8px;padding:12px 16px;font-size:14px;line-height:20px;box-shadow:0 8px 24px rgba(33,56,92,.24);animation:kcuIn 150ms ease-out">{{ toast }}</div>
+</sc-if></x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+/* ==========================================================================
+   Kyrgyz Chess Union — интерактивный прототип сайта и админки.
+   Вся логика и демо-данные здесь. Экраны — в шаблоне (<sc-if> по маршруту).
+   ========================================================================== */
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+
+    /* ---------------- ДЕМО-ДАННЫЕ (объект DEMO) ---------------- */
+    this.DEMO = {
+      comps: [
+        { id: 'kr-2026', title: 'Чемпионат Кыргызской Республики по классическим шахматам 2026', dates: '12–16 марта 2026', city: 'Бишкек', venue: 'Дворец спорта им. Кожомкула', status: 'live', apps: 96, paid: 88, fee: 2000, limit: 120, regUntil: '5 марта', sort: 20260312 },
+        { id: 'issyk-kul-2026', title: 'Кубок Иссык-Куля по быстрым шахматам', dates: '4–6 апреля 2026', city: 'Чолпон-Ата', venue: 'Центр «Радуга»', status: 'upcoming', apps: 37, paid: 25, fee: 1000, limit: 80, regUntil: '28 марта', sort: 20260404 },
+        { id: 'u18-2026', title: 'Первенство КР среди юношей и девушек до 18 лет', dates: '22–28 апреля 2026', city: 'Ош', venue: 'Дворец школьников', status: 'upcoming', apps: 84, paid: 61, fee: 1500, limit: 120, regUntil: '15 апреля', sort: 20260422 },
+        { id: 'asanov-2026', title: 'Открытый турнир памяти К. Асанова', dates: '17–19 мая 2026', city: 'Бишкек', venue: 'Шахматный клуб «Ала-Тоо»', status: 'upcoming', apps: 12, paid: 4, fee: 800, limit: 64, regUntil: '10 мая', sort: 20260517 },
+        { id: 'blitz-2026', title: 'Зимний блиц-турнир Бишкека', dates: '25 января 2026', city: 'Бишкек', venue: 'Шахматный клуб «Ала-Тоо»', status: 'done', apps: 64, paid: 64, fee: 500, limit: 64, regUntil: '20 января', sort: 20260125 },
+        { id: 'ala-too-2025', title: 'Кубок Ала-Тоо 2025', dates: '8–12 декабря 2025', city: 'Бишкек', venue: 'Дворец спорта им. Кожомкула', status: 'done', apps: 112, paid: 112, fee: 700, limit: 120, regUntil: '1 декабря', sort: 20251208 },
+      ],
+      players: [
+        { fide: '13901234', name: 'Абдырахманов Тимур', year: 2009, rating: 2145, title: 'ФМ', flag: '🇰🇬', cat: 'Юноши до 18' },
+        { fide: '13905678', name: 'Жумабаева Асель', year: 2010, rating: 2088, title: 'ЖММ', flag: '🇰🇬', cat: 'Девушки до 18' },
+        { fide: '', name: 'Ким Даниил', year: 2011, rating: 1976, title: 'КМС', flag: '🇰🇬', cat: 'Юноши до 14' },
+        { fide: '13712345', name: 'Сериков Арман', year: 2009, rating: 1954, title: 'ФМ', flag: '🇰🇿', cat: 'Юноши до 18' },
+        { fide: '', name: 'Осмонова Айгерим', year: 2012, rating: 1740, title: '—', flag: '🇰🇬', cat: 'Девушки до 14' },
+        { fide: '14203344', name: 'Рахимов Сардор', year: 2010, rating: 1702, title: 'ММ', flag: '🇺🇿', cat: 'Юноши до 18' },
+        { fide: '13908899', name: 'Осмонов Нурсултан', year: 2008, rating: 2010, title: 'КМС', flag: '🇰🇬', cat: 'Юноши до 18' },
+        { fide: '13907766', name: 'Ли Мария', year: 2009, rating: 1888, title: 'ФМ', flag: '🇰🇬', cat: 'Девушки до 18' },
+      ],
+      news: [
+        { id: 'reg-open', date: '28.02.2026', title: 'Открыта регистрация на чемпионат республики', lead: 'Заявки принимаются до 5 марта включительно. Взнос — 2 000 сом, для членов сборной действует скидка.' },
+        { id: 'karakol', date: '21.02.2026', title: 'Итоги детского первенства в Караколе', lead: 'В турнире сыграли 128 шахматистов из семи областей. Победители получили путёвки на первенство республики.' },
+        { id: 'seminar', date: '14.02.2026', title: 'Судейский семинар ФИДЕ пройдёт в Бишкеке в апреле', lead: 'Семинар для арбитров категории FA продлится три дня. Регистрация открыта для судей всех областей.' },
+        { id: 'asian-games', date: '03.02.2026', title: 'Сборная КР выступит на Азиатских играх', lead: 'Состав определён по итогам отборочного турнира. В команду вошли шесть шахматистов.' },
+        { id: 'blitz-results', date: '27.01.2026', title: 'Итоги зимнего блиц-турнира', lead: 'Турнир собрал 64 участника. Победитель определился в последнем туре по дополнительным показателям.' },
+        { id: 'ranks-2025', date: '19.01.2026', title: 'Новые разряды по итогам 2025 года', lead: 'Федерация утвердила присвоение разрядов 214 шахматистам. Список опубликован в разделе документов.' },
+      ],
+      // Тарифы u18-2026
+      tariffs: { fee: 1500, cats: ['Юноши до 14', 'Девушки до 14', 'Юноши до 18', 'Девушки до 18'], stayDouble: 1800, staySingle: 2900, transfer: 800, regUntil: '15 апреля', limit: 120 },
+      // Заявки в админке (u18-2026)
+      apps: [
+        { id: 1, name: 'Абдырахманов Тимур', year: 2009, fide: '13901234', cat: 'Юноши до 18', stay: '2-местный', transfer: 'Да', pay: 'paid', sum: 16400 },
+        { id: 2, name: 'Жумабаева Асель', year: 2010, fide: '13905678', cat: 'Девушки до 18', stay: '2-местный', transfer: 'Нет', pay: 'paid', sum: 14100 },
+        { id: 3, name: 'Ким Даниил', year: 2011, fide: '', cat: 'Юноши до 14', stay: 'Не нужно', transfer: 'Нет', pay: 'wait', sum: 1200 },
+        { id: 4, name: 'Осмонова Айгерим', year: 2012, fide: '', cat: 'Девушки до 14', stay: '1-местный', transfer: 'Да', pay: 'wait', sum: 22300 },
+        { id: 5, name: 'Рахимов Сардор', year: 2010, fide: '14203344', cat: 'Юноши до 18', stay: '2-местный', transfer: 'Да', pay: 'paid', sum: 16400 },
+      ],
+    };
+
+    // Партии: тур 5 — по брифу, туры 1–4 — производные от него
+    this.rounds = {
+      5: [
+        ['Абдырахманов Тимур', '1–0', 'Осмонов Нурсултан'],
+        ['Ким Даниил', '½–½', 'Сериков Арман'],
+        ['Жумабаева Асель', '0–1', 'Ли Мария'],
+        ['Рахимов Сардор', '1–0', 'Токтогулов Бектур'],
+        ['Осмонова Айгерим', '½–½', 'Мамытова Динара'],
+      ],
+      1: [
+        ['Абдырахманов Тимур', '1–0', 'Мамытова Динара'],
+        ['Осмонов Нурсултан', '½–½', 'Рахимов Сардор'],
+        ['Ли Мария', '1–0', 'Осмонова Айгерим'],
+        ['Сериков Арман', '0–1', 'Жумабаева Асель'],
+        ['Токтогулов Бектур', '½–½', 'Ким Даниил'],
+      ],
+      2: [
+        ['Жумабаева Асель', '½–½', 'Абдырахманов Тимур'],
+        ['Ким Даниил', '1–0', 'Осмонова Айгерим'],
+        ['Рахимов Сардор', '0–1', 'Ли Мария'],
+        ['Мамытова Динара', '½–½', 'Токтогулов Бектур'],
+        ['Осмонов Нурсултан', '1–0', 'Сериков Арман'],
+      ],
+      3: [
+        ['Абдырахманов Тимур', '1–0', 'Ким Даниил'],
+        ['Ли Мария', '½–½', 'Осмонов Нурсултан'],
+        ['Сериков Арман', '1–0', 'Мамытова Динара'],
+        ['Осмонова Айгерим', '0–1', 'Рахимов Сардор'],
+        ['Токтогулов Бектур', '½–½', 'Жумабаева Асель'],
+      ],
+      4: [
+        ['Ли Мария', '1–0', 'Абдырахманов Тимур'],
+        ['Осмонов Нурсултан', '½–½', 'Ким Даниил'],
+        ['Жумабаева Асель', '1–0', 'Осмонова Айгерим'],
+        ['Мамытова Динара', '0–1', 'Сериков Арман'],
+        ['Рахимов Сардор', '½–½', 'Токтогулов Бектур'],
+      ],
+    };
+
+    const draft = this.loadDraft();
+    this.state = {
+      hash: (typeof location !== 'undefined' && location.hash) || '#/',
+      toast: '',
+      // список соревнований
+      filter: 'all', sort: 'new', view: 'list', periodFrom: '2025-01-01', periodTo: '2026-12-31',
+      // страница соревнования
+      tab: '', round: 5,
+      // регистрация
+      mode: 'delegation', fideId: '', fideMsg: '', fideOk: false, searching: false,
+      participants: draft.participants || [], errors: {},
+      stay: draft.stay || 'double', stayIn: '2026-04-21', stayOut: '2026-04-28',
+      transfer: draft.transfer === undefined ? true : draft.transfer,
+      flight: '2026-04-21T14:30', flightNo: 'FZ-1729', pax: '2',
+      agree: false, paying: false, payMethod: 'card',
+      // админка
+      auth: this.loadAuth(), login: { email: 'a.sadykov@chess.kg', pass: 'demo1234' },
+      apps: this.DEMO.apps.map(function (a) { return Object.assign({}, a); }),
+      sel: [], appQuery: '', appPay: 'all', appCat: 'all', appStay: 'all',
+      exportOpen: false, exportTpl: 'hotel',
+      exportCols: { fio: true, year: true, fide: true, cat: true, stay: true, transfer: false, pay: true, sum: true },
+      extraComps: [], adminQuery: '', adminStatus: 'all', adminYear: 'all', menuRow: '',
+      wizStep: 1,
+      wiz: {
+        title: '', city: 'Бишкек', venue: '', from: '2026-06-10', to: '2026-06-14', kind: 'Классические шахматы',
+        cats: [
+          { name: 'Юноши до 14', born: '2012 и младше', limit: 40, fee: 1200 },
+          { name: 'Девушки до 14', born: '2012 и младше', limit: 40, fee: 1200 },
+          { name: 'Юноши до 18', born: '2008 и младше', limit: 40, fee: 1500 },
+          { name: 'Девушки до 18', born: '2008 и младше', limit: 40, fee: 1500 },
+        ],
+        discTeam: true, discGM: false,
+        hotel: 'Гостиница «Алай»', priceDouble: 1800, priceSingle: 2900, transferPrice: 800,
+        needPassport: true, needPhone: true, needCoach: false, needRole: true,
+        publish: 'draft',
+      },
+      resTab: 'file', uploading: 0, uploadDone: false, manual: {},
+    };
+
+    this.onHash = this.onHash.bind(this);
+  }
+
+  /* ---------------- ЖИЗНЕННЫЙ ЦИКЛ И РОУТИНГ ---------------- */
+  componentDidMount() {
+    window.addEventListener('hashchange', this.onHash);
+    if (!location.hash) location.replace('#/');
+    this.guard();
+  }
+  componentWillUnmount() { window.removeEventListener('hashchange', this.onHash); }
+  onHash() { this.setState({ hash: location.hash || '#/', menuRow: '', exportOpen: false }, () => this.guard()); }
+
+  guard() {
+    const s = this.seg();
+    if (s[0] === 'admin' && s[1] !== 'login' && !this.state.auth) location.replace('#/admin/login');
+  }
+  seg() { return String(this.state.hash || '#/').replace(/^#\/?/, '').split('/').filter(Boolean); }
+  go(h) { location.hash = h; }
+
+  /* ---------------- ХРАНИЛИЩЕ (черновик заявки и «вход») ---------------- */
+  loadAuth() { try { return localStorage.getItem('kcu.auth') === '1'; } catch (e) { return false; } }
+  loadDraft() { try { return JSON.parse(localStorage.getItem('kcu.draft') || '{}'); } catch (e) { return {}; } }
+  saveDraft() {
+    try {
+      localStorage.setItem('kcu.draft', JSON.stringify({
+        participants: this.state.participants, stay: this.state.stay, transfer: this.state.transfer,
+      }));
+    } catch (e) { /* приватный режим — молча игнорируем */ }
+  }
+
+  /* ---------------- ТОСТ ---------------- */
+  toast(msg) {
+    clearTimeout(this._t);
+    this.setState({ toast: msg });
+    this._t = setTimeout(() => this.setState({ toast: '' }), 3000);
+  }
+
+  /* ---------------- ВСПОМОГАТЕЛЬНОЕ ---------------- */
+  money(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' сом'; }
+
+  statusMeta(st) {
+    const base = 'display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;font-size:13px;line-height:16px;font-weight:500;white-space:nowrap;';
+    if (st === 'upcoming') return { statusText: 'Предстоящее', live: false, pillStyle: base + 'color:#1E7A4C;background:#E6F2EB' };
+    if (st === 'live') return { statusText: 'Идёт сейчас', live: true, pillStyle: base + 'color:#21385C;background:#FDF1DE' };
+    if (st === 'draft') return { statusText: 'Черновик', live: false, pillStyle: base + 'color:#5C6A80;background:#F5F7FA;border:1px dashed #DCE2EB' };
+    return { statusText: 'Завершено', live: false, pillStyle: base + 'color:#5C6A80;background:#F5F7FA' };
+  }
+
+  card(c) {
+    return Object.assign({}, c, this.statusMeta(c.status), { href: '#/competitions/' + c.id });
+  }
+
+  allComps() { return this.state.extraComps.concat(this.DEMO.comps); }
+  compById(id) { const all = this.allComps(); for (let i = 0; i < all.length; i++) if (all[i].id === id) return all[i]; return null; }
+  playerByName(n) { const p = this.DEMO.players; for (let i = 0; i < p.length; i++) if (p[i].name === n) return p[i]; return { name: n, flag: '🇰🇬', title: '—' }; }
+
+  /* ---------------- РЕГИСТРАЦИЯ: суммы ---------------- */
+  nights() {
+    const a = new Date(this.state.stayIn), b = new Date(this.state.stayOut);
+    const n = Math.round((b - a) / 86400000);
+    return n > 0 ? n : 0;
+  }
+  totals() {
+    const t = this.DEMO.tariffs;
+    const n = Math.max(1, this.state.participants.length);
+    const fee = n * t.fee;
+    const rate = this.state.stay === 'double' ? t.stayDouble : this.state.stay === 'single' ? t.staySingle : 0;
+    const stay = rate * this.nights();
+    const tr = this.state.transfer ? t.transfer : 0;
+    return { n: n, fee: fee, rate: rate, nights: this.nights(), stay: stay, tr: tr, total: fee + stay + tr };
+  }
+
+  emptyParticipant() {
+    return { name: '', birth: '', fide: '', passport: '', email: '', phone: '', cat: 'Юноши до 18', role: 'Игрок', open: true };
+  }
+
+  findFide() {
+    const q = this.state.fideId.trim();
+    if (!q) { this.toast('Введите FIDE ID'); return; }
+    this.setState({ searching: true, fideMsg: '', fideOk: false });
+    setTimeout(() => {
+      const p = this.DEMO.players.filter(function (x) { return x.fide === q; })[0];
+      const list = this.state.participants.slice();
+      if (p) {
+        list.push({ name: p.name, birth: p.year + '-05-14', fide: p.fide, passport: 'AN' + (3200000 + list.length), email: 't.abdyrahmanov@example.kg', phone: '+996 555 12-34-56', cat: p.cat, role: 'Игрок', open: false });
+        this.setState({ searching: false, fideOk: true, fideMsg: 'Игрок найден в базе FIDE, данные заполнены автоматически', participants: list, fideId: '' }, this.saveDraft);
+      } else {
+        const e = this.emptyParticipant(); e.fide = q;
+        list.push(e);
+        this.setState({ searching: false, fideOk: false, fideMsg: 'Игрок не найден, заполните данные вручную', participants: list }, this.saveDraft);
+      }
+    }, 700);
+  }
+
+  next1() {
+    const errs = {};
+    this.state.participants.forEach(function (p, i) {
+      if (!p.birth) errs['birth' + i] = 'Укажите дату рождения — от неё зависит категория';
+      if (!p.name) errs['name' + i] = 'Укажите фамилию и имя';
+    });
+    if (!this.state.participants.length) { this.toast('Добавьте хотя бы одного участника'); return; }
+    if (!this.state.agree) { errs.agree = 'Нужно согласие на обработку персональных данных'; }
+    this.setState({ errors: errs });
+    if (Object.keys(errs).length) {
+      setTimeout(function () {
+        const el = document.querySelector('[data-err="1"]');
+        if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 120, behavior: 'smooth' });
+      }, 30);
+      this.toast('Проверьте выделенные поля');
+      return;
+    }
+    this.go('#/competitions/' + this.compId() + '/register/stay');
+  }
+  compId() { const s = this.seg(); return s[1] || 'u18-2026'; }
+
+  pay() {
+    this.setState({ paying: true });
+    setTimeout(() => { this.setState({ paying: false }); this.go('#/competitions/' + this.compId() + '/register/done'); }, 900);
+  }
+
+  /* ---------------- АДМИНКА: заявки ---------------- */
+  filteredApps() {
+    const st = this.state;
+    const q = st.appQuery.trim().toLowerCase();
+    return st.apps.filter(function (a) {
+      if (q && a.name.toLowerCase().indexOf(q) < 0) return false;
+      if (st.appPay !== 'all' && a.pay !== st.appPay) return false;
+      if (st.appCat !== 'all' && a.cat !== st.appCat) return false;
+      if (st.appStay === 'yes' && a.stay === 'Не нужно') return false;
+      if (st.appStay === 'no' && a.stay !== 'Не нужно') return false;
+      return true;
+    });
+  }
+  toggleSel(id) {
+    const s = this.state.sel.slice();
+    const i = s.indexOf(id);
+    if (i < 0) s.push(id); else s.splice(i, 1);
+    this.setState({ sel: s });
+  }
+  confirmPay() {
+    const sel = this.state.sel;
+    const apps = this.state.apps.map(function (a) { return sel.indexOf(a.id) < 0 ? a : Object.assign({}, a, { pay: 'paid' }); });
+    this.setState({ apps: apps, sel: [] });
+    this.toast('Оплата подтверждена для ' + sel.length + ' заявок');
+  }
+
+  /* ---------------- АДМИНКА: мастер создания ---------------- */
+  setWiz(k, v) { const w = Object.assign({}, this.state.wiz); w[k] = v; this.setState({ wiz: w }); }
+  setCat(i, k, v) {
+    const cats = this.state.wiz.cats.map(function (c) { return Object.assign({}, c); });
+    cats[i][k] = v; this.setWiz('cats', cats);
+  }
+  publish() {
+    const w = this.state.wiz;
+    const c = {
+      id: 'new-' + Date.now(), title: w.title || 'Новое соревнование (без названия)', dates: this.wizDates(), city: w.city, venue: w.venue || '—',
+      status: w.publish === 'now' ? 'upcoming' : 'draft', apps: 0, paid: 0, fee: 1500, limit: 160, regUntil: '—', sort: 99999999,
+    };
+    this.setState({ extraComps: [c].concat(this.state.extraComps), wizStep: 1 });
+    this.go('#/admin');
+    this.toast('Соревнование создано');
+  }
+  wizDates() {
+    const m = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+    const a = new Date(this.state.wiz.from), b = new Date(this.state.wiz.to);
+    if (isNaN(a) || isNaN(b)) return '—';
+    return a.getDate() + '–' + b.getDate() + ' ' + m[b.getMonth()] + ' ' + b.getFullYear();
+  }
+
+  /* ---------------- АДМИНКА: результаты ---------------- */
+  simulateUpload() {
+    this.setState({ uploading: 1, uploadDone: false });
+    const step = () => {
+      const v = this.state.uploading;
+      if (v >= 100) { this.setState({ uploading: 0, uploadDone: true }); return; }
+      this.setState({ uploading: Math.min(100, v + 14) });
+      setTimeout(step, 160);
+    };
+    setTimeout(step, 160);
+  }
+
+  /* ======================= ЗНАЧЕНИЯ ДЛЯ ШАБЛОНА ======================= */
+  renderVals() {
+    const st = this.state, s = this.seg(), self = this;
+    const stub = () => this.toast('В прототипе не реализовано');
+
+    // --- маршрут ---
+    const isAdmin = s[0] === 'admin';
+    const isLogin = isAdmin && s[1] === 'login';
+    const reg = s[0] === 'competitions' && s[2] === 'register';
+    const regStep = reg ? (s[3] || 'people') : '';
+    const vals = {
+      stub: stub,
+      toast: st.toast, hasToast: !!st.toast,
+      showHeader: !isAdmin,
+      showFooter: !isAdmin,
+      isHome: s.length === 0,
+      isCompList: s[0] === 'competitions' && !s[1],
+      isComp: s[0] === 'competitions' && !!s[1] && !reg,
+      isReg1: reg && regStep === 'people',
+      isRegStay: reg && regStep === 'stay',
+      isRegPay: reg && regStep === 'payment',
+      isRegDone: reg && regStep === 'done',
+      isNewsList: s[0] === 'news' && !s[1],
+      isNews: s[0] === 'news' && !!s[1],
+      isLogin: isLogin,
+      isAdminList: isAdmin && !s[1] && !!st.auth,
+      isWizard: isAdmin && s[1] === 'competitions' && s[2] === 'new' && !!st.auth,
+      isAdminApps: isAdmin && s[1] === 'competitions' && s[3] === 'participants' && !!st.auth,
+      isAdminRes: isAdmin && s[1] === 'competitions' && s[3] === 'results' && !!st.auth,
+    };
+
+    /* ---- главная ---- */
+    const heroComp = this.DEMO.comps.filter(function (c) { return c.status === 'live'; })[0] || this.DEMO.comps[0];
+    vals.hero = { title: heroComp.title, line: heroComp.dates + ' · ' + heroComp.city + ', ' + heroComp.venue, regHref: '#/competitions/' + heroComp.id + '/register' };
+    vals.homeComps = this.DEMO.comps.filter(function (c) { return c.status !== 'done'; }).slice(0, 3).map(function (c) { return self.card(c); });
+    vals.posts = [{ label: 'пост @chess.kg' }, { label: 'пост @chess.kg' }, { label: 'пост @chess.kg' }, { label: 'пост @chess.kg' }];
+    vals.homeNews = this.DEMO.news.slice(0, 3).map(function (n) { return Object.assign({}, n, { href: '#/news/' + n.id }); });
+
+    /* ---- список соревнований ---- */
+    const chipBase = 'height:36px;padding:0 16px;border-radius:999px;font-size:14px;font-weight:500;cursor:pointer;transition:background 150ms,border-color 150ms;';
+    const chips = [['all', 'Все'], ['upcoming', 'Предстоящие'], ['live', 'Идут сейчас'], ['done', 'Завершённые']];
+    vals.compChips = chips.map(function (c) {
+      const on = st.filter === c[0];
+      return {
+        label: c[1], pick: function () { self.setState({ filter: c[0] }); },
+        style: chipBase + (on ? 'background:#21385C;color:#fff;border:1px solid #21385C' : 'background:#fff;color:#21385C;border:1px solid #DCE2EB'),
+      };
+    });
+    // период: даты соревнований хранятся как число ГГГГММДД в поле sort
+    const num = function (d) { return Number(String(d || '').replace(/-/g, '')) || 0; };
+    const pFrom = num(st.periodFrom) || 0, pTo = num(st.periodTo) || 99999999;
+    let list = this.DEMO.comps.filter(function (c) {
+      if (!(st.filter === 'all' || c.status === st.filter)) return false;
+      return c.sort >= pFrom && c.sort <= pTo;
+    });
+    list = list.slice().sort(function (a, b) { return st.sort === 'new' ? b.sort - a.sort : a.sort - b.sort; });
+    vals.listComps = list.map(function (c) { return self.card(c); });
+    vals.hasComps = vals.isCompList && st.view === 'list' && list.length > 0;
+    vals.noComps = vals.isCompList && st.view === 'list' && list.length === 0;
+    vals.isListView = st.view === 'list';
+    vals.isCalView = st.view === 'calendar';
+    vals.compSort = st.sort;
+    vals.setSort = function (e) { self.setState({ sort: e.target.value }); };
+    vals.periodFrom = st.periodFrom; vals.periodTo = st.periodTo;
+    vals.setPeriodFrom = function (e) { self.setState({ periodFrom: e.target.value }); };
+    vals.setPeriodTo = function (e) { self.setState({ periodTo: e.target.value }); };
+    vals.resetFilters = function () { self.setState({ filter: 'all', sort: 'new', periodFrom: '2025-01-01', periodTo: '2026-12-31' }); };
+    const segBase = 'height:44px;padding:0 16px;border:0;font-size:14px;font-weight:500;cursor:pointer;';
+    vals.viewList = function () { self.setState({ view: 'list' }); };
+    vals.viewCal = function () { self.setState({ view: 'calendar' }); };
+    vals.viewListStyle = segBase + (st.view === 'list' ? 'background:#21385C;color:#fff' : 'background:#fff;color:#5C6A80');
+    vals.viewCalStyle = segBase + (st.view === 'calendar' ? 'background:#21385C;color:#fff' : 'background:#fff;color:#5C6A80');
+    vals.weekDays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'].map(function (w) { return { label: w }; });
+    const cells = [];
+    for (let i = 0; i < 2; i++) cells.push({ day: '', style: 'min-height:64px', has: false, title: '' });
+    for (let d = 1; d <= 30; d++) {
+      const kul = d >= 4 && d <= 6, u18 = d >= 22 && d <= 28;
+      cells.push({
+        day: d, has: kul || u18, title: kul ? 'Кубок Иссык-Куля' : u18 ? 'Первенство КР до 18 лет' : '',
+        style: 'min-height:64px;padding:8px;border:1px solid #DCE2EB;border-radius:8px;background:' + (kul || u18 ? '#FDF1DE' : '#fff'),
+      });
+    }
+    vals.calCells = cells;
+
+    return Object.assign(vals, this.detailVals(s), this.regVals(s), this.newsVals(s), this.adminVals(s));
+  }
+
+  /* ---------------- 8.3 / 8.4 страница соревнования ---------------- */
+  detailVals(s) {
+    if (!(s[0] === 'competitions' && s[1] && s[2] !== 'register')) return {};
+    const self = this, st = this.state;
+    const c = this.compById(s[1]) || this.DEMO.comps[2];
+    const done = c.status === 'done', live = c.status === 'live';
+    const meta = this.statusMeta(c.status);
+    const pct = Math.min(100, Math.round((c.apps / c.limit) * 100));
+
+    const names = done || live ? ['Результаты', 'Итоговая таблица', 'Описание', 'Регламент'] : ['Описание', 'Регламент', 'Призовой фонд', 'Проживание и трансфер', 'Участники'];
+    const active = names.indexOf(st.tab) >= 0 ? st.tab : names[0];
+    const tabBase = 'height:48px;padding:0 16px;border:0;background:transparent;font-size:16px;font-weight:600;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px;transition:color 150ms;';
+    const tabs = names.map(function (n) {
+      return {
+        label: n, pick: function () { self.setState({ tab: n }); },
+        style: tabBase + (n === active ? 'color:#21385C;border-bottom-color:#E9A23B' : 'color:#5C6A80'),
+      };
+    });
+
+    // туры: у идущего соревнования доступны 1–3, тур 4 «идёт»
+    const maxRound = live ? 4 : 5;
+    const defRound = live ? 3 : 5;
+    const cur = st.round <= maxRound ? st.round : defRound;
+    const chipBase = 'height:36px;padding:0 16px;border-radius:999px;font-size:14px;font-weight:500;cursor:pointer;transition:background 150ms;';
+    const roundChips = [];
+    for (let r = 1; r <= maxRound; r++) {
+      const inPlay = live && r === 4;
+      const on = r === cur;
+      roundChips.push({
+        label: 'Тур ' + r + (inPlay ? ' · идёт' : ''),
+        pick: (function (rr) { return function () { self.setState({ round: rr }); }; })(r),
+        style: chipBase + (on ? 'background:#21385C;color:#fff;border:1px solid #21385C' : inPlay ? 'background:#FDF1DE;color:#21385C;border:1px solid #E9A23B' : 'background:#fff;color:#21385C;border:1px solid #DCE2EB'),
+      });
+    }
+    const inPlay = live && cur === 4;
+    const games = (this.rounds[cur] || []).map(function (g, i) {
+      const w = self.playerByName(g[0]), b = self.playerByName(g[2]);
+      const draw = g[1] === '½–½';
+      const wWin = g[1] === '1–0', bWin = g[1] === '0–1';
+      const nm = 'display:block;';
+      return {
+        board: i + 1,
+        wFlag: w.flag, wName: w.name, wTitle: w.title,
+        bFlag: b.flag, bName: b.name, bTitle: b.title,
+        res: g[1],
+        wStyle: nm + (wWin ? 'font-weight:600;color:#21385C' : 'color:#2B3A50'),
+        bStyle: nm + (bWin ? 'font-weight:600;color:#21385C' : 'color:#2B3A50'),
+        resStyle: 'font-size:18px;font-variant-numeric:tabular-nums;' + (draw ? 'color:#5C6A80' : 'font-weight:700;color:#21385C'),
+      };
+    });
+
+    const pl = this.DEMO.players.slice(0, 6).map(function (p, i) { return Object.assign({}, p, { num: i + 1 }); });
+    const standings = this.DEMO.players.slice(0, 6).slice().sort(function (a, b) { return b.rating - a.rating; }).map(function (p, i) {
+      return { place: i + 1, name: p.name, flag: p.flag, pts: (5 - i * 0.5).toFixed(1).replace('.', ','), bh: (18.5 - i * 1.5).toFixed(1).replace('.', ',') };
+    });
+
+    return {
+      comp: Object.assign({}, c, meta, {
+        line: c.dates + ' · ' + c.city + ', ' + c.venue,
+        feeText: this.money(c.fee),
+        regHref: '#/competitions/' + c.id + '/register',
+        barStyle: 'height:100%;width:' + pct + '%;background:#E9A23B',
+        p1: 'Соревнование проводится Kyrgyz Chess Union при поддержке Министерства спорта. К участию допускаются шахматисты, представляющие областные федерации, спортивные школы и клубы республики.',
+        p2: 'Игра проходит в ' + c.venue + '. Открытие — в первый день в 10:00, туры начинаются в 11:00. Заявки принимаются до ' + c.regUntil + '.',
+      }),
+      tabs: tabs,
+      tabDesc: active === 'Описание',
+      tabRules: active === 'Регламент',
+      tabPrize: active === 'Призовой фонд',
+      tabStay: active === 'Проживание и трансфер',
+      tabPlayers: active === 'Участники',
+      tabResults: active === 'Результаты',
+      tabStandings: active === 'Итоговая таблица',
+      catChips: this.DEMO.tariffs.cats.map(function (x) { return { label: x }; }),
+      prizes: [{ place: '1 место', sum: '30 000 сом' }, { place: '2 место', sum: '20 000 сом' }, { place: '3 место', sum: '10 000 сом' }],
+      compPlayers: pl,
+      roundChips: roundChips,
+      games: inPlay ? [] : games,
+      hasGames: !inPlay,
+      roundInPlay: inPlay,
+      standings: standings,
+      regOpen: !done,
+      regClosed: done,
+      goStandings: function () { self.setState({ tab: 'Итоговая таблица' }); },
+    };
+  }
+
+  /* ---------------- 8.5–8.8 регистрация ---------------- */
+  regVals(s) {
+    if (!(s[0] === 'competitions' && s[2] === 'register')) return {};
+    const self = this, st = this.state;
+    const id = s[1];
+    const c = this.compById(id) || this.DEMO.comps[2];
+    const step = s[3] || 'people';
+    const t = this.totals();
+    const upd = function (i, k) {
+      return function (e) {
+        const list = st.participants.map(function (p) { return Object.assign({}, p); });
+        list[i][k] = e.target.value;
+        self.setState({ participants: list }, self.saveDraft.bind(self));
+      };
+    };
+
+    const stepNums = [['people', '1', 'Участники'], ['stay', '2', 'Проживание и трансфер'], ['payment', '3', 'Оплата']];
+    const curIdx = stepNums.map(function (x) { return x[0]; }).indexOf(step);
+    const steps = stepNums.map(function (x, i) {
+      const on = i === curIdx, past = i < curIdx;
+      return {
+        num: x[1], label: x[2],
+        go: function () { if (past) self.go('#/competitions/' + id + '/register' + (x[0] === 'people' ? '' : '/' + x[0])); },
+        style: 'display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 16px;border-radius:999px;border:1px solid ' + (on ? '#21385C' : '#DCE2EB') + ';background:' + (on ? '#21385C' : '#fff') + ';color:' + (on ? '#fff' : past ? '#21385C' : '#5C6A80') + ';font-size:14px;font-weight:600;cursor:' + (past ? 'pointer' : 'default'),
+        numStyle: 'display:inline-grid;place-items:center;width:24px;height:24px;border-radius:999px;background:' + (on ? '#E9A23B' : past ? '#FDF1DE' : '#F5F7FA') + ';color:#21385C;font-size:13px;font-weight:700',
+      };
+    });
+
+    const inputBase = 'height:44px;width:100%;padding:0 12px;border-radius:8px;background:#fff;border:1px solid ';
+    const participants = st.participants.map(function (p, i) {
+      const nameErr = st.errors['name' + i], birthErr = st.errors['birth' + i];
+      return Object.assign({}, p, {
+        num: i + 1,
+        collapsed: !p.open,
+        summary: (p.name || 'Участник без имени') + ' · ' + (p.birth ? String(p.birth).slice(0, 4) : '—') + ' · FIDE ' + (p.fide || 'нет') + ' · ' + p.cat + ' · роль: ' + p.role,
+        onName: upd(i, 'name'), onBirth: upd(i, 'birth'), onFide: upd(i, 'fide'), onPass: upd(i, 'passport'),
+        onEmail: upd(i, 'email'), onPhone: upd(i, 'phone'), onCat: upd(i, 'cat'), onRole: upd(i, 'role'),
+        edit: function () {
+          const list = st.participants.map(function (x) { return Object.assign({}, x); });
+          list[i].open = true; self.setState({ participants: list });
+        },
+        remove: function () {
+          const list = st.participants.slice(); list.splice(i, 1);
+          self.setState({ participants: list, errors: {} }, self.saveDraft.bind(self));
+          self.toast('Участник удалён');
+        },
+        hasNameErr: !!nameErr, nameErr: nameErr || '', nameErrFlag: nameErr ? '1' : '0',
+        hasBirthErr: !!birthErr, birthErr: birthErr || '', noBirthErr: !birthErr, birthErrFlag: birthErr ? '1' : '0',
+        nameStyle: inputBase + (nameErr ? '#C0392B' : '#DCE2EB'),
+        birthStyle: inputBase + (birthErr ? '#C0392B' : '#DCE2EB'),
+      });
+    });
+
+    const optBase = 'display:flex;align-items:flex-start;gap:12px;width:100%;padding:16px;border-radius:8px;background:#fff;cursor:pointer;text-align:left;transition:border-color 150ms;border:1px solid ';
+    const dot = function (on) { return 'flex:0 0 auto;width:20px;height:20px;margin-top:2px;border-radius:999px;border:2px solid ' + (on ? '#E9A23B' : '#DCE2EB') + ';background:' + (on ? '#E9A23B' : '#fff') + ';box-shadow:' + (on ? 'inset 0 0 0 3px #fff' : 'none'); };
+    const stayDefs = [['none', 'Не нужно', 'Живу в городе или бронирую сам'], ['double', 'Гостиница «Алай», 2-местный номер', '1 800 сом/сутки с человека, завтрак включён'], ['single', 'Гостиница «Алай», 1-местный номер', '2 900 сом/сутки']];
+    const stayOptions = stayDefs.map(function (o) {
+      const on = st.stay === o[0];
+      return {
+        label: o[1], note: o[2],
+        pick: function () { self.setState({ stay: o[0] }, self.saveDraft.bind(self)); },
+        style: optBase + (on ? '#E9A23B' : '#DCE2EB'), dotStyle: dot(on),
+      };
+    });
+
+    const costRows = [{ name: 'Взнос ' + t.n + ' × ' + this.money(this.DEMO.tariffs.fee), sum: this.money(t.fee) }];
+    if (t.stay) costRows.push({ name: 'Проживание ' + t.nights + ' сут. × ' + this.money(t.rate), sum: this.money(t.stay) });
+    if (t.tr) costRows.push({ name: 'Трансфер', sum: this.money(t.tr) });
+
+    return {
+      isReg: step !== 'done',
+      regComp: c, steps: steps,
+      backToComp: '#/competitions/' + id,
+      // шаг 1
+      participants: participants,
+      fideId: st.fideId, setFide: function (e) { self.setState({ fideId: e.target.value }); },
+      findFideBtn: function () { self.findFide(); },
+      findLabel: st.searching ? 'Ищем…' : 'Найти',
+      hasFideMsg: !!st.fideMsg, fideMsg: st.fideMsg,
+      fideMsgStyle: 'margin:12px 0 0;padding:10px 12px;border-radius:8px;font-size:14px;line-height:20px;' + (st.fideOk ? 'background:#E6F2EB;color:#1E7A4C' : 'background:#FDF1DE;color:#21385C'),
+      addParticipant: function () {
+        self.setState({ participants: st.participants.concat([self.emptyParticipant()]) }, self.saveDraft.bind(self));
+      },
+      agree: !!st.agree, agreeErr: !!st.errors.agree,
+      toggleAgree: function (e) { self.setState({ agree: e.target.checked }); },
+      next1Btn: function () { self.next1(); },
+      modeSingle: function () { self.setState({ mode: 'single' }); },
+      modeDeleg: function () { self.setState({ mode: 'delegation' }); },
+      modeSingleStyle: 'height:44px;padding:0 16px;border:0;font-size:14px;font-weight:600;cursor:pointer;' + (st.mode === 'single' ? 'background:#21385C;color:#fff' : 'background:#fff;color:#5C6A80'),
+      modeDelegStyle: 'height:44px;padding:0 16px;border:0;font-size:14px;font-weight:600;cursor:pointer;' + (st.mode === 'delegation' ? 'background:#21385C;color:#fff' : 'background:#fff;color:#5C6A80'),
+      // шаг 2
+      stayOptions: stayOptions,
+      stayIn: st.stayIn, stayOut: st.stayOut,
+      setStayIn: function (e) { self.setState({ stayIn: e.target.value }); },
+      setStayOut: function (e) { self.setState({ stayOut: e.target.value }); },
+      transfer: !!st.transfer,
+      toggleTransfer: function (e) { self.setState({ transfer: e.target.checked }, self.saveDraft.bind(self)); },
+      flight: st.flight, flightNo: st.flightNo, pax: st.pax,
+      setFlight: function (e) { self.setState({ flight: e.target.value }); },
+      setFlightNo: function (e) { self.setState({ flightNo: e.target.value }); },
+      setPax: function (e) { self.setState({ pax: e.target.value }); },
+      backStep: function () { history.back(); },
+      toPayment: function () { self.go('#/competitions/' + id + '/register/payment'); },
+      // шаг 3
+      summaryRows: costRows.map(function (r) { return { name: r.name.split(' ')[0], calc: r.name, sum: r.sum }; }),
+      pickCard: function () { self.setState({ payMethod: 'card' }); },
+      pickInvoice: function () { self.setState({ payMethod: 'invoice' }); },
+      cardStyle: optBase + (st.payMethod === 'card' ? '#E9A23B' : '#DCE2EB'), cardDot: dot(st.payMethod === 'card'),
+      invStyle: optBase + (st.payMethod === 'invoice' ? '#E9A23B' : '#DCE2EB'), invDot: dot(st.payMethod === 'invoice'),
+      payBtn: function () { self.pay(); },
+      payLabel: st.paying ? 'Переходим…' : 'Перейти к оплате',
+      // карточка справа
+      draftPeople: (st.participants.length ? st.participants : [{ name: 'Участник не добавлен', cat: '', role: '' }]).map(function (p) {
+        return { line: (p.name || 'Участник без имени') + (p.cat ? ' · ' + p.cat : '') + (p.role ? ' · ' + p.role : '') };
+      }),
+      costRows: costRows,
+      totalText: this.money(t.total),
+    };
+  }
+
+  /* ---------------- 8.9 новости ---------------- */
+  newsVals(s) {
+    if (s[0] !== 'news') return {};
+    const list = this.DEMO.news.map(function (n) { return Object.assign({}, n, { href: '#/news/' + n.id }); });
+    if (!s[1]) return { newsList: list };
+    const a = list.filter(function (n) { return n.id === s[1]; })[0] || list[0];
+    return { newsList: list, article: a, related: list.filter(function (n) { return n.id !== a.id; }).slice(0, 3) };
+  }
+  /* ---------------- 8.10–8.14 админка ---------------- */
+  adminVals(s) {
+    if (s[0] !== 'admin') return {};
+    const self = this, st = this.state;
+    const vals = {};
+
+    // вход
+    vals.loginEmail = st.login.email;
+    vals.loginPass = st.login.pass;
+    vals.setEmail = function (e) { self.setState({ login: Object.assign({}, st.login, { email: e.target.value }) }); };
+    vals.setPass = function (e) { self.setState({ login: Object.assign({}, st.login, { pass: e.target.value }) }); };
+    vals.doLogin = function () {
+      try { localStorage.setItem('kcu.auth', '1'); } catch (e) { /* нет доступа к хранилищу */ }
+      self.setState({ auth: true });
+      self.go('#/admin');
+    };
+    vals.doLogout = function () {
+      try { localStorage.removeItem('kcu.auth'); } catch (e) { /* нет доступа к хранилищу */ }
+      self.setState({ auth: false });
+      self.go('#/admin/login');
+    };
+    vals.noop = function () {};
+
+    if (s[1] === 'login' || !st.auth) return vals;
+    vals.isAdminShell = true;
+
+    // навигация
+    const navItems = ['Соревнования', 'Заявки', 'Результаты', 'Игроки', 'Контент', 'Пользователи', 'Журнал действий'];
+    const isApps = s[3] === 'participants', isRes = s[3] === 'results';
+    const activeNav = isApps ? 'Заявки' : isRes ? 'Результаты' : 'Соревнования';
+    vals.adminNav = navItems.map(function (n) {
+      const on = n === activeNav;
+      return {
+        label: n,
+        go: function () {
+          if (n === 'Соревнования') self.go('#/admin');
+          else if (n === 'Заявки') self.go('#/admin/competitions/u18-2026/participants');
+          else if (n === 'Результаты') self.go('#/admin/competitions/kr-2026/results');
+          else self.toast('В прототипе не реализовано');
+        },
+        style: 'text-align:left;padding:10px 12px;border:0;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;transition:background 150ms;border-left:3px solid ' + (on ? '#E9A23B' : 'transparent') + ';background:' + (on ? '#21385C' : 'transparent') + ';color:' + (on ? '#fff' : '#C9D3E4'),
+      };
+    });
+    vals.adminTitle = s[2] === 'new' ? 'Создание соревнования' : isApps ? 'Заявки и участники' : isRes ? 'Результаты' : 'Соревнования';
+
+    /* ---- 8.11 список ---- */
+    let ac = this.allComps().filter(function (c) {
+      if (st.adminQuery && c.title.toLowerCase().indexOf(st.adminQuery.toLowerCase()) < 0) return false;
+      if (st.adminStatus !== 'all' && c.status !== st.adminStatus) return false;
+      if (st.adminYear !== 'all' && c.dates.indexOf(st.adminYear) < 0) return false;
+      return true;
+    });
+    vals.adminComps = ac.map(function (c, i) {
+      return Object.assign({}, c, self.statusMeta(c.status), {
+        rowStyle: 'background:' + (i % 2 ? '#F5F7FA' : '#fff'),
+        open: function () { self.go('#/admin/competitions/' + c.id + '/participants'); },
+        menu: function () { self.setState({ menuRow: st.menuRow === c.id ? '' : c.id }); },
+        menuOpen: st.menuRow === c.id,
+        edit: function () { self.setState({ menuRow: '' }); self.go('#/admin/competitions/new'); },
+        copy: function () { self.setState({ menuRow: '' }); self.toast('Копия соревнования создана (демо)'); },
+        archive: function () { self.setState({ menuRow: '' }); self.toast('Соревнование архивировано (демо)'); },
+      });
+    });
+    vals.adminQuery = st.adminQuery; vals.adminStatus = st.adminStatus; vals.adminYear = st.adminYear;
+    vals.setAdminQuery = function (e) { self.setState({ adminQuery: e.target.value }); };
+    vals.setAdminStatus = function (e) { self.setState({ adminStatus: e.target.value }); };
+    vals.setAdminYear = function (e) { self.setState({ adminYear: e.target.value }); };
+
+    /* ---- 8.12 мастер ---- */
+    const wizNames = ['Основное', 'Категории и тарифы', 'Проживание и трансфер', 'Форма заявки', 'Публикация'];
+    vals.wizSteps = wizNames.map(function (n, i) {
+      const num = i + 1, on = st.wizStep === num;
+      return {
+        num: num, label: n,
+        go: function () { self.setState({ wizStep: num }); },
+        style: 'display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 14px;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;border:1px solid ' + (on ? '#21385C' : '#DCE2EB') + ';background:' + (on ? '#21385C' : '#fff') + ';color:' + (on ? '#fff' : '#5C6A80'),
+        numStyle: 'display:inline-grid;place-items:center;width:20px;height:20px;border-radius:999px;font-size:13px;font-weight:700;color:#21385C;background:' + (on ? '#E9A23B' : '#F5F7FA'),
+      };
+    });
+    vals.wz1 = st.wizStep === 1; vals.wz2 = st.wizStep === 2; vals.wz3 = st.wizStep === 3;
+    vals.wz4 = st.wizStep === 4; vals.wz5 = st.wizStep === 5;
+    vals.wiz = st.wiz;
+    const w = function (k) { return function (e) { self.setWiz(k, e.target.value); }; };
+    vals.wSetTitle = w('title'); vals.wSetCity = w('city'); vals.wSetVenue = w('venue');
+    vals.wSetFrom = w('from'); vals.wSetTo = w('to'); vals.wSetKind = w('kind');
+    vals.wSetHotel = w('hotel'); vals.wSetPD = w('priceDouble'); vals.wSetPS = w('priceSingle'); vals.wSetTP = w('transferPrice');
+    vals.wSetDiscTeam = function (e) { self.setWiz('discTeam', e.target.checked); };
+    vals.wSetDiscGM = function (e) { self.setWiz('discGM', e.target.checked); };
+    vals.wSetPassport = function (e) { self.setWiz('needPassport', e.target.checked); };
+    vals.wSetPhone = function (e) { self.setWiz('needPhone', e.target.checked); };
+    vals.wSetCoach = function (e) { self.setWiz('needCoach', e.target.checked); };
+    vals.wSetRole = function (e) { self.setWiz('needRole', e.target.checked); };
+    vals.wizCats = st.wiz.cats.map(function (c, i) {
+      return Object.assign({}, c, {
+        rowStyle: 'background:' + (i % 2 ? '#F5F7FA' : '#fff'),
+        onName: function (e) { self.setCat(i, 'name', e.target.value); },
+        onBorn: function (e) { self.setCat(i, 'born', e.target.value); },
+        onLimit: function (e) { self.setCat(i, 'limit', e.target.value); },
+        onFee: function (e) { self.setCat(i, 'fee', e.target.value); },
+        remove: function () {
+          const cats = st.wiz.cats.slice(); cats.splice(i, 1); self.setWiz('cats', cats);
+        },
+      });
+    });
+    vals.addCat = function () { self.setWiz('cats', st.wiz.cats.concat([{ name: 'Новая категория', born: '2010 и младше', limit: 40, fee: 1500 }])); };
+    vals.pubNow = st.wiz.publish === 'now'; vals.pubDraft = st.wiz.publish === 'draft';
+    vals.wPubNow = function () { self.setWiz('publish', 'now'); };
+    vals.wPubDraft = function () { self.setWiz('publish', 'draft'); };
+    const prevMeta = this.statusMeta(st.wiz.publish === 'now' ? 'upcoming' : 'draft');
+    vals.wizPreviewPill = prevMeta.pillStyle;
+    vals.wizPreviewStatus = prevMeta.statusText;
+    vals.wizPreviewTitle = st.wiz.title || 'Новое соревнование (без названия)';
+    vals.wizPreviewLine = this.wizDates() + ' · ' + st.wiz.city + (st.wiz.venue ? ', ' + st.wiz.venue : '');
+    vals.wizBack = function () { if (st.wizStep > 1) self.setState({ wizStep: st.wizStep - 1 }); else self.go('#/admin'); };
+    vals.wizNext = function () { if (st.wizStep < 5) self.setState({ wizStep: st.wizStep + 1 }); else self.publish(); };
+    vals.saveDraftBtn = function () { self.toast('Черновик сохранён'); };
+    vals.publishBtn = function () { self.publish(); };
+
+    /* ---- 8.13 заявки ---- */
+    const rows = this.filteredApps();
+    vals.appRows = rows.map(function (a, i) {
+      const paid = a.pay === 'paid';
+      return Object.assign({}, a, {
+        rowStyle: 'background:' + (st.sel.indexOf(a.id) >= 0 ? '#FDF1DE' : i % 2 ? '#F5F7FA' : '#fff'),
+        checked: st.sel.indexOf(a.id) >= 0,
+        toggle: function () { self.toggleSel(a.id); },
+        fideText: a.fide || '— нет —',
+        payText: paid ? 'Оплачено' : 'Ожидает оплаты',
+        payStyle: 'display:inline-flex;padding:4px 10px;border-radius:999px;font-size:13px;line-height:16px;font-weight:500;' + (paid ? 'color:#1E7A4C;background:#E6F2EB' : 'color:#5C6A80;background:#F5F7FA;border:1px dashed #DCE2EB'),
+        sumText: self.money(a.sum),
+      });
+    });
+    vals.noApps = rows.length === 0;
+    vals.hasSel = st.sel.length > 0;
+    vals.selCount = st.sel.length;
+    vals.confirmPayBtn = function () { self.confirmPay(); };
+    vals.appQuery = st.appQuery; vals.appPay = st.appPay; vals.appCat = st.appCat; vals.appStay = st.appStay;
+    vals.setAppQuery = function (e) { self.setState({ appQuery: e.target.value, sel: [] }); };
+    vals.setAppPay = function (e) { self.setState({ appPay: e.target.value, sel: [] }); };
+    vals.setAppCat = function (e) { self.setState({ appCat: e.target.value, sel: [] }); };
+    vals.setAppStay = function (e) { self.setState({ appStay: e.target.value, sel: [] }); };
+    vals.resetAppFilters = function () { self.setState({ appQuery: '', appPay: 'all', appCat: 'all', appStay: 'all' }); };
+    vals.resultsHref = '#/admin/competitions/' + (s[2] || 'u18-2026') + '/results';
+    vals.openExport = function () { self.setState({ exportOpen: true }); };
+    vals.closeExport = function () { self.setState({ exportOpen: false }); };
+    vals.exportOpen = st.exportOpen;
+    const tpls = [['hotel', 'Ведомость для отеля'], ['drivers', 'Список для водителей'], ['finance', 'Финансовый отчёт'], ['custom', 'Свой набор колонок']];
+    vals.exportTpls = tpls.map(function (t) {
+      const on = st.exportTpl === t[0];
+      return {
+        label: t[1], pick: function () { self.setState({ exportTpl: t[0] }); },
+        style: 'text-align:left;padding:12px 14px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;background:#fff;color:#21385C;border:1px solid ' + (on ? '#E9A23B' : '#DCE2EB'),
+      };
+    });
+    const colDefs = [['fio', 'ФИО'], ['year', 'Год рождения'], ['fide', 'FIDE ID'], ['cat', 'Категория'], ['stay', 'Проживание'], ['transfer', 'Трансфер'], ['pay', 'Статус оплаты'], ['sum', 'Сумма']];
+    vals.exportCols = colDefs.map(function (c) {
+      return {
+        label: c[1], on: !!st.exportCols[c[0]],
+        toggle: function (e) {
+          const cols = Object.assign({}, st.exportCols); cols[c[0]] = e.target.checked;
+          self.setState({ exportCols: cols });
+        },
+      };
+    });
+    vals.download = function () { self.setState({ exportOpen: false }); self.toast('Файл сформирован (демо)'); };
+
+    /* ---- 8.14 результаты ---- */
+    const tabBase = 'height:44px;padding:0 16px;border:0;background:transparent;font-size:16px;font-weight:600;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px;';
+    vals.resFile = st.resTab === 'file'; vals.resManual = st.resTab === 'manual';
+    vals.resTabFile = function () { self.setState({ resTab: 'file' }); };
+    vals.resTabManual = function () { self.setState({ resTab: 'manual' }); };
+    vals.resTabFileStyle = tabBase + (st.resTab === 'file' ? 'color:#21385C;border-bottom-color:#E9A23B' : 'color:#5C6A80');
+    vals.resTabManualStyle = tabBase + (st.resTab === 'manual' ? 'color:#21385C;border-bottom-color:#E9A23B' : 'color:#5C6A80');
+    vals.uploadBtn = function () { self.simulateUpload(); };
+    vals.isUploading = st.uploading > 0;
+    vals.uploadPct = st.uploading + '%';
+    vals.uploadBar = 'height:100%;width:' + st.uploading + '%;background:#E9A23B';
+    vals.uploadDone = st.uploadDone;
+    vals.uploaded = [
+      { round: 'Тур 1', note: 'загружен 13.03.2026, 48 партий' },
+      { round: 'Тур 2', note: 'загружен 14.03.2026, 48 партий' },
+      { round: 'Тур 3', note: 'загружен 15.03.2026, 48 партий' },
+    ].map(function (u) { return Object.assign({}, u, { again: function () { self.simulateUpload(); } }); });
+    vals.manualRows = (this.rounds[4] || []).map(function (g, i) {
+      const cur = st.manual[i] || '';
+      return {
+        board: i + 1, white: g[0], black: g[2],
+        rowStyle: 'background:' + (i % 2 ? '#F5F7FA' : '#fff'),
+        opts: ['1–0', '½–½', '0–1'].map(function (o) {
+          const on = cur === o;
+          return {
+            label: o,
+            pick: function () { const m = Object.assign({}, st.manual); m[i] = o; self.setState({ manual: m }); },
+            style: 'height:36px;padding:0 12px;border:0;font-size:14px;font-weight:600;cursor:pointer;font-variant-numeric:tabular-nums;' + (on ? 'background:#21385C;color:#fff' : 'background:#fff;color:#5C6A80'),
+          };
+        }),
+      };
+    });
+    vals.saveRound = function () { self.toast('Тур сохранён (демо)'); };
+    vals.publishRound = function () { self.toast('Тур опубликован (демо)'); };
+
+    return vals;
+  }
+}
+</script>
+</body>
+</html>
