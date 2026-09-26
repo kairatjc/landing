@@ -10,7 +10,6 @@ workers_dev = false
 # The site files are collected into ./dist by the workflow before deploying.
 [assets]
 directory = "./dist"
-html_handling = "drop-trailing-slash"
 
 # Keeps the custom domain attached across deploys.
 [[routes]]
