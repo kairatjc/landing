@@ -21,6 +21,8 @@
       --color-accent-700: #3f6086;
       --color-danger: #c0392b;
       --color-ok: #2e7d54;
+      --color-button: #7c3aed;
+      --color-button-700: #5b21b6;
       --color-divider: color-mix(in srgb, #1d1f20 14%, transparent);
       --font-heading: "Inter", system-ui, sans-serif;
       --font-body: "Inter", system-ui, sans-serif;
@@ -135,11 +137,11 @@
       background: transparent;
       cursor: pointer;
       display: grid; place-items: center;
-      color: var(--color-muted);
+      color: var(--color-button);
       border-radius: 8px;
     }
-    .eye-btn:hover { color: var(--color-text); background: rgba(29,31,32,0.05); }
-    .eye-btn:focus-visible { outline: 2px solid var(--color-accent); }
+    .eye-btn:hover { color: var(--color-button-700); background: rgba(124, 58, 237, 0.10); }
+    .eye-btn:focus-visible { outline: 2px solid var(--color-button); }
 
     .hint {
       min-height: 16px;
@@ -172,7 +174,7 @@
       letter-spacing: 0.04em;
       text-transform: uppercase;
       color: #fff;
-      background: linear-gradient(135deg, var(--color-accent), var(--color-accent-700));
+      background: linear-gradient(135deg, var(--color-button), var(--color-button-700));
       border: none;
       border-radius: 10px;
       cursor: pointer;
