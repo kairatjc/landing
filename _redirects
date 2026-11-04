@@ -1,0 +1,7 @@
+# Old flat URLs -> new subproject folders
+/demo.html       /chess/        301
+/demo            /chess/        301
+/login.html      /automation/   301
+/login           /automation/   301
+/admin.html      /automation/admin  301
+/admin           /automation/admin  301

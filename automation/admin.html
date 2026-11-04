@@ -21,10 +21,10 @@
         var valid = data && typeof data.expiresAt === "number" && Date.now() < data.expiresAt;
         if (!valid) {
           if (raw) localStorage.removeItem(TOKEN_KEY);
-          window.location.replace("login.html");
+          window.location.replace("./");
         }
       } catch (e) {
-        window.location.replace("login.html");
+        window.location.replace("./");
       }
     })();
   </script>
@@ -468,7 +468,7 @@
     var token = currentToken();
     if (!token) {
       // Belt-and-suspenders: the head guard normally handles this.
-      window.location.replace("login.html");
+      window.location.replace("./");
     } else {
       var name = token.username || "user";
       document.getElementById("user-name").textContent = name;
@@ -481,7 +481,7 @@
 
     document.getElementById("logout").addEventListener("click", function () {
       try { localStorage.removeItem(TOKEN_KEY); } catch (e) {}
-      window.location.replace("login.html");
+      window.location.replace("./");
     });
 
     document.getElementById("year").textContent = new Date().getFullYear();
@@ -489,7 +489,7 @@
     // Re-check expiry periodically so a session that lapses while the tab is
     // open bounces back to the login screen.
     setInterval(function () {
-      if (!currentToken()) window.location.replace("login.html");
+      if (!currentToken()) window.location.replace("./");
     }, 30000);
   </script>
 </body>

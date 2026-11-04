@@ -26,6 +26,19 @@ settings all live in that file:
 - `[assets] directory = "./dist"` — the workflow collects the site files into
   `dist/` before deploying.
 
+## Site layout
+
+The repository hosts several independent subprojects, each in its own folder:
+
+| URL                          | Folder         | What it is                              |
+|------------------------------|----------------|-----------------------------------------|
+| `kairat.me/`                 | `/` (root)     | Automation course landing page          |
+| `kairat.me/chess`            | `chess/`       | Chess federation demo                   |
+| `kairat.me/automation`       | `automation/`  | Mock login + admin pages for test automation practice |
+
+Old URLs (`/demo.html`, `/login.html`, `/admin.html`) are permanently
+redirected to the new locations via [`_redirects`](_redirects).
+
 ## One-time setup
 
 ### Step 1 — Find your Cloudflare Account ID

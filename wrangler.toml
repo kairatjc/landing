@@ -10,6 +10,9 @@ workers_dev = false
 # The site files are collected into ./dist by the workflow before deploying.
 [assets]
 directory = "./dist"
+# Serves folder/index.html at /folder/ (e.g. /chess/, /automation/) and
+# page.html at /page. Old flat URLs are redirected via ./_redirects.
+html_handling = "auto-trailing-slash"
 
 # Keeps the custom domain attached across deploys.
 [[routes]]
